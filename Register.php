@@ -105,19 +105,14 @@
             }
             else{
 
-                $password = trim($_POST['Password_Comfird']);
+                $confirm_password = trim($_POST['Password_Comfird']);
 
             }
             if($password !== $confirm_password) {
-
                 $thesamerpassowrd = 'Hasła się różnią';
-                if(empty($username_err)&&empty($Password_Comfird)&&empty($password_err)) {
+                if(empty($username_err)&&empty($confirm_password)&&empty($password_err)) {
                 echo $thesamerpassowrd;
                 }
-            }
-            else {
-
-
             }
             if(empty($username_err) && empty($confirm_password_err) && empty($confirm_password_err)&& empty($thesamerpassowrd)){
 
