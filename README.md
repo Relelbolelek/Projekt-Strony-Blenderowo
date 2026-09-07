@@ -45,3 +45,5 @@
 
 ### 5. Panel Administratora
 * 🔴 **Szeroko pojęty system administratora** pozwalający na usuwanie prac i moderację treści
+
+Używane linki: https://www.tutorialrepublic.com/php-tutorial/php-mysql-login-system.php#:~:text=In%20this%20tutorial%20we%27ll%20create%20a%20simple%20registration,as%20a%20welcome%20page%20and%20a%20logout%20script.
