@@ -28,7 +28,7 @@
 
 ### 1. System Rejestracyjny i Użytkowników
 * 🟢 **Rejestracja**
-* 🔴 **Logowanie**
+* 🟢 **Logowanie**
 * 🔴 **Edytowanie Konta**
 
 ### 2. Zarządzanie Pracami Graficznymi
