@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UwUOwOIchujemoto</title>
+    <title>Rejestracja</title>
 </head>
 <body>
     <?php
         require_once "base.php";
     ?>
-    <form action="index.php" method="post">
+    <form action="Register.php" method="post">
         <input type="text" name="Name" id="">
         <input type="password" name="Password" id="">
         <input type="password" name="Password_Comfird" id="">
@@ -17,7 +17,7 @@
     </form>
     <?php
         $username = $password = $confirm_password = "";
-        $username_err = $password_err = $confirm_password_err = "";
+        $username_err = $password_err = $confirm_password_err = $thesamerpassowrd = "";
 
         if($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -84,7 +84,7 @@
             }
             else{
 
-                $password = trim($_POST['Password']);
+                $password = trim($_POST['Password_Comfird']);
 
             }
 
@@ -108,9 +108,18 @@
                 $password = trim($_POST['Password_Comfird']);
 
             }
-            if($password != $confirm_password) {
+            if($password !== $confirm_password) {
+
+                $thesamerpassowrd = 'Hasła się różnią';
+                if(empty($username_err)&&empty($Password_Comfird)&&empty($password_err)) {
+                echo $thesamerpassowrd;
+                }
             }
-            if(empty($username_err) && empty($confirm_password_err) && empty($confirm_password_err)){
+            else {
+
+
+            }
+            if(empty($username_err) && empty($confirm_password_err) && empty($confirm_password_err)&& empty($thesamerpassowrd)){
 
                 $sql ="INSERT INTO users(username,password) VALUES (?, ?)";
 
