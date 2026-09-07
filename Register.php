@@ -3,21 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UwUOwOIchujemoto</title>
+    <title>Rejestracja</title>
 </head>
 <body>
     <?php
         require_once "base.php";
     ?>
-    <form action="index.php" method="post">
+    <form action="Register.php" method="post">
         <input type="text" name="Name" id="">
         <input type="password" name="Password" id="">
         <input type="password" name="Password_Comfird" id="">
         <button type="submit" name="button"></button>
     </form>
     <?php
+        session_start();
+
+        if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+
+            header("location: Galeria.php");
+            exit;
+
+        }
         $username = $password = $confirm_password = "";
-        $username_err = $password_err = $confirm_password_err = "";
+        $username_err = $password_err = $confirm_password_err = $thesamerpassowrd = "";
 
         if($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -84,7 +92,7 @@
             }
             else{
 
-                $password = trim($_POST['Password']);
+                $password = trim($_POST['Password_Comfird']);
 
             }
 
@@ -105,12 +113,16 @@
             }
             else{
 
-                $password = trim($_POST['Password_Comfird']);
+                $confirm_password = trim($_POST['Password_Comfird']);
 
             }
-            if($password != $confirm_password) {
+            if($password !== $confirm_password) {
+                $thesamerpassowrd = 'Hasła się różnią';
+                if(empty($username_err)&&empty($confirm_password)&&empty($password_err)) {
+                echo $thesamerpassowrd;
+                }
             }
-            if(empty($username_err) && empty($confirm_password_err) && empty($confirm_password_err)){
+            if(empty($username_err) && empty($confirm_password_err) && empty($confirm_password_err)&& empty($thesamerpassowrd)){
 
                 $sql ="INSERT INTO users(username,password) VALUES (?, ?)";
 
@@ -134,5 +146,6 @@
             }
         }
     ?>
+    <a href="Login.php">Masz już konto?</a>
 </body>
 </html>
