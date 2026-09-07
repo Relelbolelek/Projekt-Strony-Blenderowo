@@ -16,6 +16,14 @@
         <button type="submit" name="button"></button>
     </form>
     <?php
+        session_start();
+
+        if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+
+            header("location: Galeria.php");
+            exit;
+
+        }
         $username = $password = $confirm_password = "";
         $username_err = $password_err = $confirm_password_err = $thesamerpassowrd = "";
 
@@ -138,5 +146,6 @@
             }
         }
     ?>
+    <a href="Login.php">Masz już konto?</a>
 </body>
 </html>

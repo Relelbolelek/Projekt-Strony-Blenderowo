@@ -101,5 +101,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <input type="password" name="Password" id="">
     <button type="submit"></button>
 </form>
+<a href="Register.php">Nie masz konta?</a>
 </body>
 </html>
