@@ -1,14 +1,10 @@
-Projekt strony o sklepu/galeria
+# **Projekt strony o sklepu/galeria**
 
-automatyczne dodawanie produktów konta użytkownika panel admina baza danych system opinii kastomizacja profilu dark/light mode galeria forum
+ Założeniem projektu jest zrobienie strony internetowej pozwalającej na:<br/>
+ + Rejestracji/Logowaniu/Edytowaniu Konta.<br/>
+ + Dodawaniem/Edytowaniem/Ocenianiem Prac Graficzych.<br/>
+ + Tworzenie indiwidualnych galeri Prac Graficzych.<br/>
+ + Opcjonalną możliość wystawienia Pracy na sprzedarz (Jedno lub wielokrotnie).<br/>
+ + System koszyka.<br/>
+ + Szeroko pojętego systemu administratora pozwalający na usuwanie prac
 
-założenie strony
-
-strona pozwala na tworzenie profili na których osoby mogą dzielić się z innymi pracami graficznymi,modelami,skryptami,etc. Owe pracę mogą być oceniane przez innych. jeżeli wstawiający pozwoli produkty mogą być kupowane
-
-technologie/programy
-
-visual studio
-xamp
-baza danych
-to be determined
