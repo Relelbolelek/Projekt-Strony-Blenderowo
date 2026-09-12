@@ -32,7 +32,7 @@
 * 🔴 **Edytowanie Konta**
 
 ### 2. Zarządzanie Pracami Graficznymi
-* 🔴 **Dodawanie Prac Graficznych**
+* 🟢 **Dodawanie Prac Graficznych**
 * 🔴 **Edytowanie Prac**
 * 🔴 **Ocenianie Prac**
 
