@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Wrz 07, 2026 at 12:45 PM
+-- Generation Time: Wrz 14, 2026 at 07:24 AM
 -- Wersja serwera: 10.4.32-MariaDB
 -- Wersja PHP: 8.2.12
 
@@ -20,6 +20,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `forum`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `gallery`
+--
+
+CREATE TABLE `gallery` (
+  `ID` int(11) NOT NULL,
+  `User_ID` int(11) NOT NULL,
+  `Name` text NOT NULL,
+  `Discription` text DEFAULT NULL,
+  `image_ID` text NOT NULL,
+  `Price` int(11) DEFAULT NULL,
+  `Website_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `gallery`
+--
+
+INSERT INTO `gallery` (`ID`, `User_ID`, `Name`, `Discription`, `image_ID`, `Price`, `Website_ID`) VALUES
+(15, 16, 'asddas', 'asddas', 'templet.png', 3, 0);
 
 -- --------------------------------------------------------
 
@@ -50,6 +73,12 @@ INSERT INTO `users` (`id`, `username`, `password`, `created_at`) VALUES
 --
 
 --
+-- Indeksy dla tabeli `gallery`
+--
+ALTER TABLE `gallery`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indeksy dla tabeli `users`
 --
 ALTER TABLE `users`
@@ -59,6 +88,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `gallery`
+--
+ALTER TABLE `gallery`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `users`

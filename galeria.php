@@ -15,7 +15,7 @@ session_start();
         echo '
         
             <a href="Logout.php">Wyloguj się</a>
-        
+            <a href="Profile.php?id='.$_SESSION['id'].'">Profil</a>
         ';
 
     }
@@ -27,5 +27,19 @@ session_start();
         ';
     }
 ?>
+<?php
+    require_once "base.php";
+    $sql = "SELECT * FROM `gallery`";
+    $query = mysqli_query($link,$sql);
+
+    
+?>
+<?php while($row = mysqli_fetch_assoc($query)):?>
+    <a href="produkt.php?id=<?php echo $row['ID']; ?>""><p>
+        <h1> <?php echo htmlspecialchars($row['Name']) ?> </h1>
+            <h2> <?php echo htmlspecialchars($row['Price']) ?> </h1>
+        <p> <?php echo htmlspecialchars($row['Discription']) ?> </p>
+    </p></a>
+<?php endwhile?>
 </body>
 </html>
