@@ -15,7 +15,7 @@ session_start();
         echo '
         
             <a href="Logout.php">Wyloguj się</a>
-        
+            <a href="Profile.php?id='.$_SESSION['id'].'">Profil</a>
         ';
 
     }
