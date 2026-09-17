@@ -67,7 +67,7 @@ header {
 footer {
 
     background-color: rgb(2, 2, 49);
-    height: 10dvh;
+    height: 15dvh;
     color:white;
     text-align: center;
 
@@ -82,59 +82,5 @@ main {
     grid-template-rows: minmax(auto, max-content) minmax(auto, max-content) minmax(auto, max-content);
     grid-row-gap: 2rem;
 
-
-}
-.product_conteiner {
-
-    display: grid;
-    grid-template-columns: 200px 200px;
-    grid-template-rows: minmax(auto, max-content) minmax(auto, max-content) minmax(auto, max-content);
-    grid-template-areas: 
-    "box-1 box-1"
-    "box-2 box-3"
-    "box-4 box-4";
-    width: fit-content;
-
-    
-}
-.product_conteiner img {
-
-    width: 100%;
-    height: auto; /* Zamiast 200px */
-    aspect-ratio: 16 / 9; /* Opcjonalnie: wymusza konkretne proporcje, np. szerokokątne lub 1/1 dla kwadratu */
-    object-fit: cover;
-    border-radius: 0.5rem;
-
-}
-
-.a2 {
-
-    justify-self: right;
-
-}
-.a1 {
-
-   justify-self: left; 
-
-}
-.bebas-neue-regular {
-  font-family: "Bebas Neue", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-.changa-one-regular {
-  font-family: "Changa One", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-.product_conteiner a {
-
-    font-size: 1.1rem;
-    height: fit-content;
-}
-.product_conteiner span, .product_conteiner span a {
-
-    font-size: 0.8rem;
-    letter-spacing: 0.1rem;
 
 }

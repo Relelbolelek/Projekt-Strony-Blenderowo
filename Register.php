@@ -98,9 +98,9 @@
 
             if(empty(trim($_POST["Password_Comfird"]))) {
 
-                $confirm_password_errr = "Please enter a password";
+                $confirm_password_err = "Please enter a password";
                 if(empty($password_err)&&empty($username_err)) {
-                echo $confirm_password_errr;
+                echo $confirm_password_err;
                 }
             }
             elseif(strlen(trim($_POST['Password_Comfird'])) < 12){
@@ -122,7 +122,7 @@
                 echo $thesamerpassowrd;
                 }
             }
-            if(empty($username_err) && empty($confirm_password_err) && empty($confirm_password_err)&& empty($thesamerpassowrd)){
+            if(empty($username_err) && empty($password_err) && empty($confirm_password_err)&& empty($thesamerpassowrd)){
 
                 $sql ="INSERT INTO users(username,password) VALUES (?, ?)";
 
