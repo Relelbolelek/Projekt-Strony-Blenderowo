@@ -58,7 +58,7 @@
         <div class="product_conteiner">
             <a style="grid-area: box-1;" href="produkt.php?id=<?php echo $row['Pid']; ?>"><img src="<?php echo htmlspecialchars($row['image_ID']) ?>" alt=""></a>
             <a class="a1" style="grid-area: box-2;" href="produkt.php?id=<?php echo $row['Pid']; ?>"> <?php echo htmlspecialchars($row['Name']) ?></a>
-            <a class="a2" style="grid-area: box-3;" href="produkt.php?id=<?php echo $row['Pid']; ?>"><?php echo htmlspecialchars($row['Price']) ?></a>
+            <a class="a2" style="grid-area: box-3;" href="produkt.php?id=<?php echo $row['Pid']; ?>"><?php echo htmlspecialchars($row['Price']).',00zł' ?></a>
             <span class="bebas-neue-regular" style="grid-area: box-4;">Autor: <a class="bebas-neue-regular" href=<?php echo "Profile.php?id=".$row['User_ID'] ?>><?php echo htmlspecialchars($row['username']) ?></a> </span>
         </div>
     <?php endwhile?>

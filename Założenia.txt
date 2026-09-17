@@ -1,0 +1,610 @@
+1.Rejestracja
+aktor: Użytkownik
+cel: Umożliwia rejestrowanie nowego konta użytkownika.
+
+Warunki wstępne
+
+    Użytkownik ma dostęp do systemu
+    Użytkownik nie jest zalogowany
+Warnuki Końcowe(Sukces)
+    System tworzy konto i odsyła użytkownika do galeri.
+Główny przebieg zdarzeń
+    1.Nie zalogowany użytkownik wchodzi na strone rejestracji
+    2.Użytkownik podaje Login
+    3.Użytkownik podaje hasło
+    4.Użytkownik podaje hasło ponownie
+    5.Użytkownik wysyła dane formularza
+    6.System waliduje dane
+    7.System wysyła dane do bazy danych
+    8.System odsyła użytkownika do galeri
+    9.użytkownika loguje się na swoje konto
+Przebieg alternatywny
+
+    1a.Użytkownik zalogowany  - system odsyła użytkownika do galeri
+    6a. nazwa użytkownika jest pusta - system zwraca błąd prosząć o podanie nazwy
+    6b. nazwa użytkownika istniej - system zwraca błąd prosząć o podanie innej nazwy
+    6c. nazwa użytkownika nie spełnia standaru znaków - system zwraca błąd prosząć o podanie nazwy zgodnie że standardami
+    6d. hasło jest pusta - system zwraca błąd prosząć o podanie hasła
+    6e. hasło nie spełnia standaru długości - system zwraca błąd prosząć o podanie hasła zgodnie że standardami
+    6f. Powtórzenie hasła jest pusta - system zwraca błąd prosząć o podanie powtórzenie hasła
+    6g. Powtórzenie hasła nie spełnia standaru długości - system zwraca błąd prosząć o podanie powtórzenie hasła zgodnie że standardami
+    6h. Hasło i Powtórzenie Hasła jest inne - system zwraca błąd mówiąc że hasła się różni
+
+Przebiegi wyjątkowe
+
+E1.Błąd połączenia z bazą danych – system wyświetla komunikat o błędzie i sugeruje ponowną próbę
+
+Powiązania z innymi przypadkami użycia
+«extend» logowanie - aby zalogować się na konto użytkownika musi ono zostać najpier utowrzone
+
+Częstotliwość użycia: śrdeia — Odwiedzany tylko w przypadku tworzenia konta.
+
+
+1.Rejestracja
+aktor: Użytkownik
+cel: Zalogowanie.
+
+Warunki wstępne
+
+    Użytkownik ma dostęp do systemu
+    Użytkownik nie jest zalogowany
+Warnuki Końcowe(Sukces)
+    System loguje i tworzy sesje użytkownika i odsyła użytkownika do galeri.
+Główny przebieg zdarzeń
+    1.Nie zalogowany użytkownik wchodzi na strone rejestracji
+    2.Użytkownik podaje Login
+    3.Użytkownik podaje hasło
+    4.użytkownik wysyła formularza
+    5.system waliduje dane
+    6.system loguje użytkownika
+    7.system odsyła użytkownika do glaeri
+
+Przebieg alternatywny
+    1a.Użytkownik zalogowany  - system odsyła użytkownika do galeri
+    5a. nazwa użytkownika jest pusta - system zwraca błąd prosząć o podanie nazwy
+    5b. hasło jest pusta - system zwraca błąd prosząć o podanie hasła
+    5c. nazwa lub hasło nie pokrywa się z danymi w bazie danych - system zwraca błąd mówiąc że login lub hasło nie istnieje
+
+
+Przebiegi wyjątkowe
+    E1.Błąd połączenia z bazą danych – system wyświetla komunikat o błędzie i sugeruje ponowną próbę
+
+Powiązania z innymi przypadkami użycia
+
+«included» Dodawanie prac - aby dodać prace użytkownik musi być zalogowany
+«included» Edytowanie prac - aby Edytować prace użytkownik musi być zalogowany
+«included» Usuwanie prac - aby Usunąć prace użytkownik musi być zalogowany
+«included» Ocenianie prac - aby Ocenić prace użytkownik musi być zalogowany
+«included» Edytowanie Profilu - aby Edytować profil użytkownik musi być zalogowany
+
+
+Częstotliwość użycia: 
+    wysokie - odwiedzane przy okazji logowania wymagane do kilku funkcji storny.
+
+2.logowanie
+aktor: Użytkownik
+cel: Umożliwia rejestrowanie nowego konta użytkownika.
+
+Warunki wstępne
+
+    Użytkownik ma dostęp do systemu
+    Użytkownik nie jest zalogowany
+Warnuki Końcowe(Sukces)
+    System loguje użytkownika i tworzy sesje
+Główny przebieg zdarzeń
+    1.Nie zalogowany użytkownik wchodzi na strone rejestracji
+    2.Użytkownik podaje Login
+    3.Użytkownik podaje hasło
+    4.Użytkownik podaje hasło ponownie
+    5.Użytkownik wysyła dane formularza
+    6.System waliduje dane
+    7.System wysyła dane do bazy danych
+    8.System odsyła użytkownika do galeri
+    9.użytkownika loguje się na swoje konto
+Przebieg alternatywny
+
+    1a.Użytkownik zalogowany  - system odsyła użytkownika do galeri
+    6a. nazwa użytkownika jest pusta - system zwraca błąd prosząć o podanie nazwy
+    6b. nazwa użytkownika istniej - system zwraca błąd prosząć o podanie innej nazwy
+    6c. nazwa użytkownika nie spełnia standaru znaków - system zwraca błąd prosząć o podanie nazwy zgodnie że standardami
+    6d. hasło jest pusta - system zwraca błąd prosząć o podanie hasła
+    6e. hasło nie spełnia standaru długości - system zwraca błąd prosząć o podanie hasła zgodnie że standardami
+    6f. Powtórzenie hasła jest pusta - system zwraca błąd prosząć o podanie powtórzenie hasła
+    6g. Powtórzenie hasła nie spełnia standaru długości - system zwraca błąd prosząć o podanie powtórzenie hasła zgodnie że standardami
+    6h. Hasło i Powtórzenie Hasła jest inne - system zwraca błąd mówiąc że hasła się różni
+
+Przebiegi wyjątkowe
+
+E1.Błąd połączenia z bazą danych – system wyświetla komunikat o błędzie i sugeruje ponowną próbę
+
+Powiązania z innymi przypadkami użycia
+«extend» logowanie - aby zalogować się na konto użytkownika musi ono zostać najpier utowrzone
+
+Częstotliwość użycia: śrdeia — Odwiedzany tylko w przypadku tworzenia konta.
+
+
+3.Edytowanie Profila
+aktor: Użytkownik
+cel: Umożliwia Edytowanie konta użytkownika.
+
+Warunki wstępne
+
+    Użytkownik ma dostęp do systemu
+    Użytkownik jest zalogowany
+Warnuki Końcowe(Sukces)
+    Pozwala edytować profil użytkownika
+Główny przebieg zdarzeń
+    1.użytkownik jest zalogowany 
+    2.Pozwala na zmiane nazwy 
+        2.1.użytkownik podaje nową nazwę. 
+        2.2.użytkownik wysyła dane z formularza
+        2.3.system waliduje dane
+        2.4.system zmienia nazwę
+    3.Pozwala na zmiane avatara
+        3.1.użytkownik podaje nowy avatar. 
+        3.2.użytkownik wysyła dane z formularza
+        3.3.system waliduje dane
+        3.4.system zmienia avatar
+    4.pozwala na zmiane hasła
+        2.1.użytkownik podaje nową hasło. 
+        2.1.użytkownik powtarza nową hasło. 
+        2.2.użytkownik wysyła dane z formularza
+        2.3.system waliduje dane
+        2.4.system zmienia hasło
+
+Przebieg alternatywny
+
+    1a.użytkownik nie jest zalogowany - system odsyła do galeri
+    2.3a ~ nazwa jest pusta - system wysyła błąd o pustej nazwie
+    2.3b ~ nazwa jest nie zgodna z standardami - system wysyła błąd o niezgodności ze standardami
+    2.3c ~ nazwa jest zajęta - system wysyła błąd o zajęta nazwie.
+    3.3a ~ wartość z plikiem jest pusty - system wysyła błąd o braku pliku
+    3.3b ~ plik jest nie zgodnie z standardami(rozmiar,rozdzielcość) - system wysyła błąd o tym że plik nie spełnia
+    4.3a ~  hasło jest puste - system wysyła błąd o pustym hasle
+    4.3b ~  hasło nie spełnia standaru(np mniej niz 12 znaków) - system wysyła błąd o tym że hasło nie spełnia standaru
+    4.3c ~  Powtórzenie hasło jest puste - system wysyła błąd o pustym Powtórzeniu hasła
+    4.3d ~  Powtórzenie hasło nie spełnia standaru(np mniej niz 12 znaków) - system wysyła błąd o tym że Powtórzene hasło nie spełnia standaru
+    4.3e ~  hasła i Powtórzenie hasła różni się - system wysyła błąd niezgodności haseł między sobą
+
+Przebiegi wyjątkowe
+
+E1.Błąd połączenia z bazą danych – system wyświetla komunikat o błędzie i sugeruje ponowną próbę
+
+Powiązania z innymi przypadkami użycia
+«include» logowanie - aby edytować profil trzeba się zalogować
+
+Częstotliwość użycia: średnio/niska — Używane okazjonalnie przez użytkowników
+
+4.Dodawanie prac
+aktor: Użytkownik
+cel: Umożliwia dodawanie prac graficznych 
+
+Warunki wstępne
+
+    Użytkownik ma dostęp do systemu
+    Użytkownik jest zalogowany
+Warnuki Końcowe(Sukces)
+    Dodanie pracy graficzniej
+Główny przebieg zdarzeń
+
+    1.Użytkownik wybiera opcję dodawania nowej pracy graficznej.
+    2.System wyświetla formularz dodawania pracy (polca na: nazwę, opis, cenę oraz pliki graficzne).
+    3.Użytkownik wpisuje nazwę pracy.
+    4.Użytkownik dodaje opis pracy.
+    5.Użytkownik ustala cenę pracy.
+    6.Użytkownik przesyła pliki graficzne.
+    7.Użytkownik wysyła wypełniony formularz do systemu.
+    8.System waliduje wprowadzone dane (sprawdza poprawność pól i format plików).
+    9.System zapisuje pracę graficzną w bazie danych i potwierdza sukces operacji.
+
+Przebieg alternatywny
+    8a. Pole "Nazwa" jest puste lub nie spełnia kryteriów (np. jest za krótkie, za długie lub zawiera niedozwolone znaki) – system wyświetla komunikat o błędzie, przerywa zapis i umożliwia poprawienie nazwy.
+
+    8b. Pole "Cena" zawiera nieprawidłową wartość – system wyświetla komunikat o błędzie, przerywa zapis i pozwala na wpisanie poprawnej ceny.
+
+    8c. Przesłane pliki graficzne nie spełniają wymogów (np. mają nieobsługiwany format lub przekraczają dozwolony rozmiar) – system wyświetla komunikat o błędzie, przerywa zapis i umożliwia wgranie poprawnych plików.
+
+Przebiegi wyjątkowe
+
+    E1. Błąd połączenia z bazą danych:
+
+        System wykrywa brak połączenia podczas próby zapisu, wyświetla komunikat o błędzie i sugeruje ponowną próbę.
+
+    E2. Błąd walidacji danych (np. nieobsługiwany format pliku, brak nazwy, ujemna cena):
+
+        System odrzuca formularz, wyświetla komunikat o błędach przy odpowiednich polach i pozwala użytkownikowi na ich poprawienie.
+
+Powiązania z innymi przypadkami użycia
+«include» logowanie – aby dodać pracę, użytkownik musi być zalogowany.
+
+Częstotliwość użycia: Średnio/niska — używane okazjonalnie przez użytkowników.
+
+5.Edytowanie prac
+
+Aktor: Użytkownik
+Cel: Umożliwienie edycji i aktualizacji istniejącej pracy graficznej w systemie.
+
+Warunki wstępne
+
+    Użytkownik ma dostęp do systemu.
+
+    Użytkownik jest zalogowany na swoje konto i jest właścicielem edytowanej pracy.
+
+Warunki końcowe (Sukces)
+
+    Zmiany wprowadzone w pracy graficznej zostały pomyślnie zaktualizowane i zapisane w systemie.
+
+Główny przebieg zdarzeń
+
+    1.Użytkownik wybiera opcję edycji wybranej pracy graficznej ze swojego portfolio.
+
+    2.System pobiera i wyświetla aktualne dane pracy (nazwę, opis, cenę oraz obecne pliki graficzne) w formularzu edycji.
+
+    3.Użytkownik modyfikuje wybrane elementy (nazwę, opis, cenę lub podmienia pliki graficzne).
+
+    4.Użytkownik wysyła zaktualizowany formularz do systemu.
+
+    5.System waliduje wprowadzone dane (sprawdza poprawność pól i format plików).
+
+    6.System aktualizuje dane pracy graficznej w bazie danych i potwierdza sukces operacji.
+
+Przebiegi alternatywne
+
+
+    5a. Pole "Nazwa" jest puste lub nie spełnia kryteriów (np. jest za krótkie, za długie lub zawiera niedozwolone znaki) – system wyświetla komunikat o błędzie, przerywa zapis i umożliwia poprawienie nazwy.
+
+    5b. Pole "Cena" zawiera nieprawidłową wartość – system wyświetla komunikat o błędzie, przerywa zapis i pozwala na wpisanie poprawnej ceny.
+
+    5c. Nowo przesłane pliki graficzne nie spełniają wymogów (np. mają nieobsługiwany format lub przekraczają dozwolony rozmiar) – system wyświetla komunikat o błędzie, przerywa zapis i umożliwia wgranie poprawnych plików.
+
+Przebiegi wyjątkowe
+
+    E1. Błąd połączenia z bazą danych - System wykrywa brak połączenia podczas próby zapisu zmian, wyświetla komunikat o błędzie i sugeruje ponowną próbę.
+
+6.Usuwanie prac
+
+Aktor: Użytkownik
+Cel: Umożliwienie usunięcia wybranej pracy graficznej z systemu.
+
+Warunki wstępne
+
+    Użytkownik ma dostęp do systemu.
+
+    Użytkownik jest zalogowany na swoje konto i jest właścicielem usuwanej pracy.
+
+Warunki końcowe (Sukces)
+
+    Praca graficzna oraz powiązane z nią pliki zostały trwale usunięte z systemu (lub przeniesione do archiwum/kosza).
+
+Główny przebieg zdarzeń
+
+    Użytkownik wybiera opcję usunięcia wybranej pracy graficznej ze swojego portfolio.
+
+    System wyświetla okno dialogowe z prośbą o potwierdzenie operacji usunięcia.
+
+    Użytkownik potwierdza chęć usunięcia pracy.
+
+    System usuwa pracę graficzną oraz powiązane pliki z bazy danych.
+
+    System wyświetla komunikat o pomyślnym usunięciu pracy i odświeża widok portfolio.
+
+Przebiegi alternatywne
+
+    3a Rezygnacja z usunięcia - Użytkownik klika "Anuluj" w oknie potwierdzenia – system przerywa operację usuwania i powraca do widoku portfolio bez wprowadzania zmian.
+
+
+
+Przebiegi wyjątkowe
+
+    E1. Błąd połączenia z bazą danych - System wykrywa brak połączenia podczas próby usunięcia, wyświetla komunikat o błędzie i sugeruje ponowną próbę.
+
+Częstotliwość użycia: Średnio/niska — używane okazjonalnie przez użytkowników.
+
+Powiązania: «include» logowanie – aby usunąć pracę, użytkownik musi być zalogowany.
+
+7.Oceenianie prac
+
+
+Aktor: Użytkownik 
+
+Cel: Umożliwienie wystawienia oceny oraz opinii wybranej pracy graficznej w systemie.
+
+Warunki wstępne
+
+    Użytkownik ma dostęp do systemu.
+
+    Użytkownik jest zalogowany na swoje konto.
+
+    Praca graficzna jest opublikowana i dostępna do przeglądania.
+
+Warunki końcowe (Sukces)
+
+    Ocena oraz opcjonalny komentarz zostały zapisane w systemie i uwzględnione w średniej ocen pracy.
+
+Główny przebieg zdarzeń
+
+    Użytkownik wybiera pracę graficzną, którą chce ocenić.
+
+    System wyświetla szczegóły pracy wraz z sekcją ocen i opinii.
+
+    Użytkownik wybiera ocenę punktową (np. w skali gwiazdkowej od 1 do 5).
+
+    Użytkownik opcjonalnie wpisuje treść opinii/komentarza.
+
+    Użytkownik wysyła ocenę do systemu.
+
+    System waliduje dane (sprawdza poprawność oceny i długość komentarza).
+
+    System zapisuje ocenę w bazie danych, przelicza nową średnią ocen pracy i wyświetla zaktualizowany widok.
+
+Przebiegi alternatywne (Błędy walidacji formularza)
+
+        6a. Brak wybranej oceny punktowej – system wyświetla komunikat o błędzie, przerywa zapis i wymaga zaznaczenia liczby gwiazdek.
+
+        6b. Komentarz przekracza dozwoloną długość znaków lub zawiera niedozwolone treści – system wyświetla komunikat o błędzie, przerywa zapis i umożliwia edycję tekstu.
+
+Przebiegi wyjątkowe
+
+    E1. Błąd połączenia z bazą danych:
+
+        System wykrywa brak połączenia podczas próby zapisu oceny, wyświetla komunikat o błędzie i sugeruje ponowną próbę.
+
+    E2. Próba ponownej oceny tej samej pracy przez tego samego użytkownika:
+
+        System wykrywa, że użytkownik już wystawił ocenę tej pracy, przerywa operację i wyświetla komunikat informujący o możliwości edycji istniejącej opinii.
+
+Częstotliwość użycia: Średnia — używane regularnie przez społeczność lub klientów.
+
+Powiązania: 
+
+«include» logowanie – aby ocenić pracę, użytkownik musi być zalogowany.
+«include» Przeglądanie Prac – aby ocenić pracę, trzeba ją znaleść
+«excluded» Wysukiwanie Prac - można bezpośrednio znaleść prace po przez jej wysukanie
+
+8.System koszyka
+
+Aktor: Użytkownik
+
+Cel: Umożliwienie dodania wybranej pracy graficznej lub produktu do koszyka zakupowego w celu późniejszego sfinalizowania transakcji.
+
+Warunki wstępne
+
+    Użytkownik ma dostęp do systemu.
+
+    Produkt (praca graficzna) jest dostępny w ofercie sklepu/galerii.
+
+Warunki końcowe (Sukces)
+
+    Wybrany produkt został pomyślnie dodany do koszyka użytkownika, a licznik koszyka w interfejsie został zaktualizowany.
+
+Główny przebieg zdarzeń
+
+    Użytkownik przegląda ofertę i wybiera interesujący go produkt (pracę graficzną).
+
+    System wyświetla szczegóły produktu wraz z przyciskiem „Dodaj do koszyka”.
+
+    Użytkownik klika przycisk „Dodaj do koszyka”.
+
+    System sprawdza dostępność produktu
+
+    System dodaje produkt do koszyka użytkownika.
+
+    System wyświetla potwierdzenie (np. animację lub komunikat) oraz aktualizuje liczbę przedmiotów w ikonie koszyka.
+
+Przebiegi alternatywne
+
+    A1. Produkt jest już w koszyku:
+
+        4b. System informuje o tym użytkownika i automatycznie zwiększa ilość i aktualizuje widok koszyka.
+
+Przebiegi wyjątkowe
+
+    E1. Błąd połączenia z bazą danych / sesją:
+
+        System wykrywa problem z zapisem w koszyku (np. wygaśnięcie sesji), wyświetla komunikat o błędzie i sugeruje ponowną próbę lub ponowne zalogowanie.
+
+    E2. Produkt został wycofany lub niedostępny:
+
+        System wykrywa, że produkt został usunięty przez twórcę, przerywa operację i wyświetla komunikat o braku dostępności przedmiotu.
+
+Częstotliwość użycia: Wysoka — używane regularnie przez użytkowników dokonujących zakupów.
+
+Powiązania: 
+«include» Wysukiwanie Prac
+«excluded» pozwala zalogować sie aby przypisać dodane produkty do konta
+«excluded» Wysukiwanie Prac - można bezpośrednio znaleść prace po przez jej wysukanie
+
+
+9.Kupowanie prac 
+
+Aktor: Użytkownik
+
+Cel: Umożliwienie sfinalizowania transakcji zakupu wyznaczonych elementów w systemie.
+
+Warunki wstępne
+
+    Użytkownik ma dostęp do systemu.
+
+    W koszyku użytkownika znajdują się wybrane produkty przeznaczone do zakupu.
+
+Warunki końcowe (Sukces)
+
+    Transakcja została pomyślnie zrealizowana, zamówienie zarejestrowane w systemie, a użytkownik otrzymał potwierdzenie zakupu.
+
+Główny przebieg zdarzeń
+
+    Użytkownik przechodzi do podsumowania koszyka i wybiera opcję zakupu.
+
+    System wyświetla szczegóły zamówienia oraz formularz danych płatności.
+
+    Użytkownik uzupełnia wymagane dane rozliczeniowe.
+
+    Użytkownik wybiera preferowaną metodę płatności.
+
+    Użytkownik zatwierdza transakcję.
+
+    System procesuje płatność i rejestruje zamówienie w bazie danych.
+
+    System wyświetla komunikat o sukcesie oraz podsumowanie zakupu.
+
+Przebiegi alternatywne (Błędy walidacji danych)
+
+        3a. Wymagane pola są puste lub zawierają błędy – system wyświetla komunikat o błędzie, przerywa proces i umożliwia użytkownikowi poprawienie danych.
+
+Przebiegi wyjątkowe
+
+    E1. Błąd połączenia z bramką płatności:
+
+        System wykrywa problem z komunikacją zewnętrzną, przerywa transakcję, wyświetla komunikat o błędzie i sugeruje ponowną próbę.
+
+    E2. Niepowodzenie płatności:
+
+        System otrzymuje informację o odrzuceniu transakcji, przerywa proces i pozwala na wybór innej formy płatności.
+
+Częstotliwość użycia: Średnia/wysoka — używana przez użytkowników finalizujących swoje zakupy.
+
+Powiązania: 
+«excluded»logowanie - pozwala zalogować sie aby przypisać zakupione produkty do danego konta
+
+10. Przeglądanie prac 
+
+Aktor: Użytkownik
+Cel: Umożliwienie szybkiego odnalezienia konkretnych prac graficznych w systemie za pomocą wyszukiwarki
+
+Warunki wstępne
+
+    Użytkownik ma dostęp do systemu.
+
+    W systemie znajdują się opublikowane prace graficzne.
+
+Warunki końcowe (Sukces)
+
+    System wyświetlił listę prac graficznych odpowiadających kryteriom wyszukiwania wprowadzonym przez użytkownika.
+
+Główny przebieg zdarzeń
+
+    Użytkownik przechodzi do zakładki wyszukiwania lub galerii.
+
+    System wyświetla pole wyszukiwania oraz opcjonalne filtry (np. kategoria, cena, ocena).
+
+    Użytkownik wpisuje frazę kluczową (np. tytuł lub tag pracy) i/lub wybiera filtry.
+
+    Użytkownik zatwierdza wyszukiwanie.
+
+    System przetwarza zapytanie i przeszukuje bazę danych.
+
+    System wyświetla listę pasujących prac graficznych lub informację o braku wyników.
+
+Przebiegi alternatywne (Błędy i specyficzne stany)
+
+        6a. System nie znajduje prac spełniających kryteria – wyświetla komunikat „Brak wyników wyszukiwania” oraz sugeruje zmianę frazy lub wyczyszczenie filtrów.
+
+        4a. Wpisany tekst ma mniej niż minimalna wymagana liczba znaków – system wyświetla komunikat o błędzie i prosi o podanie dłuższego zapytania.
+
+Przebiegi wyjątkowe
+
+    E1. Błąd połączenia z bazą danych:
+
+        System wykrywa brak połączenia podczas próby pobrania wyników, wyświetla komunikat o błędzie i sugeruje ponowną próbę.
+
+Częstotliwość użycia: Wysoka — używane regularnie przez użytkowników przeglądających ofertę.
+
+Powiązania: Brak.
+
+11.Przetwarzanie płatności
+
+Aktor: Zewnętrzna operator płatności
+
+Drugi Aktor: Użytkownik
+
+Cel: Umożliwienie bezpiecznego obsłużenia i autoryzacji płatności za zamówione prace graficzne.
+
+arunki wstępne
+
+    Użytkownik jest w trakcie procesu składania zamówienia i wybrał metodę płatności.
+
+    System posiada poprawne połączenie z zewnętrznym operatorem płatności (bramką płatniczą).
+
+Warunki końcowe (Sukces)
+
+    Płatność została pomyślnie autoryzowana i zrealizowana, a status zamówienia w systemie został zmieniony na „Opłacone”.
+
+Główny przebieg zdarzeń
+
+    Użytkownik zatwierdza zamówienie i zostaje przekierowany do systemu płatności.
+
+    System przekazuje dane transakcji (kwota, identyfikator zamówienia) do zewnętrznej bramki płatności.
+
+    Bramka płatności przetwarza transakcję i oczekuje na autoryzację od użytkownika/banku.
+
+    Użytkownik autoryzuje płatność (np. kodem BLIK, aplikacją bankową lub kartą).
+
+    Operator płatności przesyła do systemu potwierdzenie o pomyślnym zrealizowaniu transakcji.
+
+    System odbiera powiadomienie (webhook/callback), aktualizuje status zamówienia w bazie danych i udostępnia użytkownikowi ekran sukcesu.
+
+Przebiegi alternatywne
+
+        4a. Użytkownik rezygnuje z dokonywania płatności i zamyka okno bramki lub klika "Anuluj".
+
+        4b. Bramka przekazuje informację o przerwaniu transakcji do systemu, który wraca do widoku koszyka i pozwala na ponowną próbę zakupu.
+
+Przebiegi wyjątkowe
+
+    E1. Błąd połączenia z bramką płatności (Timeout):
+
+        System nie otrzymuje odpowiedzi od operatora w określonym czasie, przerywa proces, wyświetla komunikat o błędzie połączenia i sugeruje ponowienie próby.
+
+    E2. Odrzucenie transakcji (Brak środków / błąd autoryzacji):
+
+        Bramka zwraca status odmowy płatności, system rejestruje nieudaną próbę i wyświetla stosowny komunikat z propozycją wyboru innej formy płatności.
+
+Częstotliwość użycia: Średnia/wysoka — uruchamiane automatycznie przy każdej próbie opłacenia zamówienia.
+
+Powiązania: 
+«include» kupowanie prac.
+
+12. System moderacji prac
+
+Aktor: Administrator
+Cel: Umożliwienie administratorowi przeglądania, weryfikacji oraz moderowania prac graficznych dodanych przez użytkowników w celu zapewnienia zgodności z regulaminem systemu.
+
+Warunki wstępne
+
+    Administrator ma dostęp do systemu i jest zalogowany na konto o uprawnieniach administratora.
+
+    W systemie znajdują się prace oczekujące na zatwierdzenie lub zgłoszone przez użytkowników.
+
+Warunki końcowe (Sukces)
+
+    Praca graficzna została zweryfikowana, a jej status w systemie został zaktualizowany (zatwierdzona, odrzucona lub usunięta).
+
+Główny przebieg zdarzeń
+
+    Administrator przechodzi do panelu moderacji w systemie.
+
+    Administrator wybiera konkretną pracę do sprawdzenia.
+
+    System wyświetla szczegóły pracy (nazwę, opis, cenę, pliki graficzne oraz dane autora).
+
+    Administrator podejmuje decyzję o usunięciu
+
+    Administrator zatwierdza swoją decyzję w systemie.
+
+    System aktualizuje usuwa prace z bazy danych oraz wysyła powiadomienie do użytkownika o wyniku moderacji.
+
+Przebiegi alternatywne
+
+Przebiegi wyjątkowe
+
+    E1. Błąd połączenia z bazą danych:
+
+        System wykrywa brak połączenia podczas próby zapisu statusu moderacji, wyświetla komunikat o błędzie i sugeruje ponowną próbę.
+
+    E2. Praca została wcześniej usunięta przez autora:
+
+        Administrator próbuje zweryfikować pracę, która została już skasowana przez jej twórcę; system informuje o braku dostępu do zasobu i odświeża listę moderacji.
+
+Częstotliwość użycia: Średnia/wysoka — używane regularnie przez administrację.
+
+Powiązania: «include» logowanie – aby moderować prace, administrator musi być zalogowany na konto z odpowiednimi uprawnieniami.

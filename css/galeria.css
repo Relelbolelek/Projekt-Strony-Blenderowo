@@ -131,10 +131,18 @@ main {
 
     font-size: 1.1rem;
     height: fit-content;
+    letter-spacing: 0.05rem;
+    color:rgb(216, 128, 128);
 }
 .product_conteiner span, .product_conteiner span a {
 
     font-size: 0.8rem;
     letter-spacing: 0.1rem;
+    
 
+}
+.product_conteiner span a:hover {
+
+    text-decoration: underline !important;
+    color:rgb(173, 128, 216);
 }
