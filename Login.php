@@ -19,7 +19,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 
 }
 
-require_once "base.php";
+require_once "Skrypty\base.php";
 
 $username = $password = "";
 $username_err = $password_err = "";

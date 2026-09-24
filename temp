@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/Profile.css">
-    <title>Profil <?php echo $row['username']; ?></title>
+    <link rel="stylesheet" href="css/galeria.css">
+    <title>Galeria</title>
 </head>
 <body>
     <div Class='Main-Conainer'>
@@ -48,33 +48,6 @@
     ?>
 
     <main>
-        <?php
-            $data = $row['created_at'];
-            $dataObj = new DateTime($data);
-            $formattedDate = $dataObj->format('d/m/y')
-            ?>
-            <h1><?php echo $row['username']; ?></h1>
-            <p>Członek od: <?php echo $formattedDate; ?></p>
-            <?php
-            require_once "Skrypty\base.php";
-            $sql = 'SELECT * FROM `gallery` WHERE User_ID='.$idprofilu.'';
-            $query = mysqli_query($link,$sql);
-
-        
-        ?>
-        <?php while($row = mysqli_fetch_assoc($query)):?>
-            <p><a href="produkt.php?id=<?php echo $row['ID']; ?>">
-                <h1> <?php echo htmlspecialchars($row['Name']) ?> </h1>
-                    <h2> <?php echo htmlspecialchars($row['Price']) ?> </h1>
-                <p> <?php echo htmlspecialchars($row['Discription']) ?> </p>
-                <?php if(isset($_SESSION['id'])){ 
-                    if($_SESSION['id'] == $idprofilu) {
-                        echo '<p><a href="edycja.php?id='.$row['ID'].'">Edytuj</a></p>';
-                        echo '<p><a href="Produkt-Usun.php?id='.$idprofilu.'&idproduktu='.$row['ID'].'">Usuń</a></p>';
-                    }
-                } ?>
-            </a></p>
-        <?php endwhile?> 
     </main>
     <footer>
         Jajko
