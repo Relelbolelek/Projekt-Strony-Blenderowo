@@ -40,7 +40,7 @@ Powiązania z innymi przypadkami użycia
 Częstotliwość użycia: śrdeia — Odwiedzany tylko w przypadku tworzenia konta.
 
 
-1.Rejestracja
+2.logowanie
 aktor: Użytkownik
 cel: Zalogowanie.
 
@@ -81,99 +81,132 @@ Powiązania z innymi przypadkami użycia
 Częstotliwość użycia: 
     wysokie - odwiedzane przy okazji logowania wymagane do kilku funkcji storny.
 
-2.logowanie
-aktor: Użytkownik
-cel: Umożliwia rejestrowanie nowego konta użytkownika.
 
-Warunki wstępne
+3.1. Edytowanie Nazwy Użytkownika
 
-    Użytkownik ma dostęp do systemu
-    Użytkownik nie jest zalogowany
-Warnuki Końcowe(Sukces)
-    System loguje użytkownika i tworzy sesje
-Główny przebieg zdarzeń
-    1.Nie zalogowany użytkownik wchodzi na strone rejestracji
-    2.Użytkownik podaje Login
-    3.Użytkownik podaje hasło
-    4.Użytkownik podaje hasło ponownie
-    5.Użytkownik wysyła dane formularza
-    6.System waliduje dane
-    7.System wysyła dane do bazy danych
-    8.System odsyła użytkownika do galeri
-    9.użytkownika loguje się na swoje konto
-Przebieg alternatywny
+    Aktor: Użytkownik
 
-    1a.Użytkownik zalogowany  - system odsyła użytkownika do galeri
-    6a. nazwa użytkownika jest pusta - system zwraca błąd prosząć o podanie nazwy
-    6b. nazwa użytkownika istniej - system zwraca błąd prosząć o podanie innej nazwy
-    6c. nazwa użytkownika nie spełnia standaru znaków - system zwraca błąd prosząć o podanie nazwy zgodnie że standardami
-    6d. hasło jest pusta - system zwraca błąd prosząć o podanie hasła
-    6e. hasło nie spełnia standaru długości - system zwraca błąd prosząć o podanie hasła zgodnie że standardami
-    6f. Powtórzenie hasła jest pusta - system zwraca błąd prosząć o podanie powtórzenie hasła
-    6g. Powtórzenie hasła nie spełnia standaru długości - system zwraca błąd prosząć o podanie powtórzenie hasła zgodnie że standardami
-    6h. Hasło i Powtórzenie Hasła jest inne - system zwraca błąd mówiąc że hasła się różni
+    Cel: Umożliwienie użytkownikowi zmiany nazwy profilu.
 
-Przebiegi wyjątkowe
+    Warunki wstępne:
 
-E1.Błąd połączenia z bazą danych – system wyświetla komunikat o błędzie i sugeruje ponowną próbę
+        Użytkownik ma dostęp do systemu.
 
-Powiązania z innymi przypadkami użycia
-«extend» logowanie - aby zalogować się na konto użytkownika musi ono zostać najpier utowrzone
+        Użytkownik jest zalogowany.
 
-Częstotliwość użycia: śrdeia — Odwiedzany tylko w przypadku tworzenia konta.
+    Warunki Końcowe (Sukces): Nazwa użytkownika w bazie danych zostaje zmieniona na nową.
 
+    Główny przebieg zdarzeń:
 
-3.Edytowanie Profila
-aktor: Użytkownik
-cel: Umożliwia Edytowanie konta użytkownika.
+        Użytkownik przechodzi do formularza edycji nazwy profilu.
 
-Warunki wstępne
+        Użytkownik podaje nową nazwę.
 
-    Użytkownik ma dostęp do systemu
-    Użytkownik jest zalogowany
-Warnuki Końcowe(Sukces)
-    Pozwala edytować profil użytkownika
-Główny przebieg zdarzeń
-    1.użytkownik jest zalogowany 
-    2.Pozwala na zmiane nazwy 
-        2.1.użytkownik podaje nową nazwę. 
-        2.2.użytkownik wysyła dane z formularza
-        2.3.system waliduje dane
-        2.4.system zmienia nazwę
-    3.Pozwala na zmiane avatara
-        3.1.użytkownik podaje nowy avatar. 
-        3.2.użytkownik wysyła dane z formularza
-        3.3.system waliduje dane
-        3.4.system zmienia avatar
-    4.pozwala na zmiane hasła
-        2.1.użytkownik podaje nową hasło. 
-        2.1.użytkownik powtarza nową hasło. 
-        2.2.użytkownik wysyła dane z formularza
-        2.3.system waliduje dane
-        2.4.system zmienia hasło
+        Użytkownik wysyła dane z formularza.
 
-Przebieg alternatywny
+        System waliduje wprowadzone dane.
 
-    1a.użytkownik nie jest zalogowany - system odsyła do galeri
-    2.3a ~ nazwa jest pusta - system wysyła błąd o pustej nazwie
-    2.3b ~ nazwa jest nie zgodna z standardami - system wysyła błąd o niezgodności ze standardami
-    2.3c ~ nazwa jest zajęta - system wysyła błąd o zajęta nazwie.
-    3.3a ~ wartość z plikiem jest pusty - system wysyła błąd o braku pliku
-    3.3b ~ plik jest nie zgodnie z standardami(rozmiar,rozdzielcość) - system wysyła błąd o tym że plik nie spełnia
-    4.3a ~  hasło jest puste - system wysyła błąd o pustym hasle
-    4.3b ~  hasło nie spełnia standaru(np mniej niz 12 znaków) - system wysyła błąd o tym że hasło nie spełnia standaru
-    4.3c ~  Powtórzenie hasło jest puste - system wysyła błąd o pustym Powtórzeniu hasła
-    4.3d ~  Powtórzenie hasło nie spełnia standaru(np mniej niz 12 znaków) - system wysyła błąd o tym że Powtórzene hasło nie spełnia standaru
-    4.3e ~  hasła i Powtórzenie hasła różni się - system wysyła błąd niezgodności haseł między sobą
+        System aktualizuje nazwę użytkownika w bazie danych i wyświetla komunikat o sukcesie.
 
-Przebiegi wyjątkowe
+    Przebieg alternatywny:
 
-E1.Błąd połączenia z bazą danych – system wyświetla komunikat o błędzie i sugeruje ponowną próbę
+        1a. Użytkownik nie jest zalogowany – system odsyła do strony logowania/galerii.
 
-Powiązania z innymi przypadkami użycia
-«include» logowanie - aby edytować profil trzeba się zalogować
+        4a. ~ Nazwa jest pusta – system wysyła błąd o pustej nazwie.
 
-Częstotliwość użycia: średnio/niska — Używane okazjonalnie przez użytkowników
+        4b. ~ Nazwa jest niezgodna ze standardami (np. niedozwolone znaki) – system wysyła błąd o niezgodności ze standardami.
+
+        4c. ~ Nazwa jest już zajęta przez innego użytkownika – system wysyła błąd o zajętej nazwie.
+
+    Przebiegi wyjątkowe:
+
+        E1. Błąd połączenia z bazą danych – system wyświetla komunikat o błędzie i sugeruje ponowną próbę.
+
+    Powiązania: «include» logowanie
+
+3.2. Edytowanie Avatara
+
+    Aktor: Użytkownik
+
+    Cel: Umożliwienie użytkownikowi zmiany zdjęcia profilowego (avatara).
+
+    Warunki wstępne:
+
+        Użytkownik ma dostęp do systemu.
+
+        Użytkownik jest zalogowany.
+
+    Warunki Końcowe (Sukces): Nowy plik avatara zostaje zapisany na serwerze, a jego ścieżka zaktualizowana w bazie.
+
+    Główny przebieg zdarzeń:
+
+        Użytkownik przechodzi do formularza zmiany avatara.
+
+        Użytkownik wybiera nowy plik graficzny.
+
+        Użytkownik wysyła dane z formularza.
+
+        System waliduje plik.
+
+        System zapisuje plik na serwerze i aktualizuje ścieżkę w bazie danych.
+
+    Przebieg alternatywny:
+
+        1a. Użytkownik nie jest zalogowany – system odsyła do strony logowania/galerii.
+
+        4a. ~ Plik nie został wybrany (wartość pusta) – system wysyła błąd o braku pliku.
+
+        4b. ~ Plik jest niezgodny ze standardami (zły format, za duży rozmiar, zła rozdzielczość) – system wysyła błąd o odrzuceniu pliku.
+
+    Przebiegi wyjątkowe:
+
+        E1. Błąd zapisu pliku na serwerze lub błąd bazy danych – system wyświetla komunikat o błędzie.
+
+    Powiązania: «include» logowanie
+
+3.3. Zmiana Hasła
+
+    Aktor: Użytkownik
+
+    Cel: Umożliwienie użytkownikowi bezpiecznej zmiany hasła do konta.
+
+    Warunki wstępne:
+
+        Użytkownik ma dostęp do systemu.
+
+        Użytkownik jest zalogowany.
+
+    Warunki Końcowe (Sukces): Stare hasło zostaje zastąpione nowym (zaszyfrowanym) w bazie danych.
+
+    Główny przebieg zdarzeń:
+
+        Użytkownik przechodzi do formularza zmiany hasła.
+
+        Użytkownik podaje nowe hasło oraz powtarza nowe hasło w osobnym polu.
+
+        Użytkownik wysyła dane z formularza.
+
+        System waliduje dane.
+
+        System szyfruje nowe hasło i zapisuje je w bazie danych.
+
+    Przebieg alternatywny:
+
+        1a. Użytkownik nie jest zalogowany – system odsyła do strony logowania/galerii.
+
+        4a. ~ Nowe hasło jest puste – system wysyła błąd o pustym haśle.
+
+        4b. ~ Nowe hasło nie spełnia standardu (np. mniej niż 12 znaków, brak cyfr/znaków specjalnych) – system wysyła błąd o niespełnieniu wymagań.
+
+        4c. ~ Pole powtórzenia hasła jest puste – system wysyła błąd.
+
+        4d. ~ Hasło i powtórzone hasło różnią się między sobą – system wysyła błąd niezgodności haseł.
+
+    Przebiegi wyjątkowe:
+
+        E1. Błąd połączenia z bazą danych – system wyświetla komunikat o błędzie.
+
+    Powiązania: «include» logowanie
 
 4.Dodawanie prac
 aktor: Użytkownik
