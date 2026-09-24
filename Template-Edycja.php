@@ -5,7 +5,7 @@
 </head>
 <body>
     <?php
-        require_once "base.php";
+        require_once "Skrypty\base.php";
         $sql = 'SELECT * FROM `gallery` WHERE id='.$idedycji;
         $query = mysqli_query($link,$sql);
     ?>
@@ -24,7 +24,7 @@
 
         }
         $error = false;
-        require_once "base.php";
+        require_once "Skrypty\base.php";
         if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             if(strlen(trim($_POST['Nazwa'])) < 3) {

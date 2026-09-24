@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/Profile.css">
+    <link rel="stylesheet" href="../css/Profile.css">
     <title>Profil <?php echo $row['username']; ?></title>
 </head>
 <body>
@@ -56,7 +56,7 @@
             <h1><?php echo $row['username']; ?></h1>
             <p>Członek od: <?php echo $formattedDate; ?></p>
             <?php
-            require_once "base.php";
+            require_once "Skrypty\base.php";
             $sql = 'SELECT * FROM `gallery` WHERE User_ID='.$idprofilu.'';
             $query = mysqli_query($link,$sql);
 

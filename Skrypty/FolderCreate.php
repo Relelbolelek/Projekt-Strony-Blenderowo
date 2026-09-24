@@ -4,7 +4,7 @@ session_start();
 
 if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true) {
 
-    header("location: Galeria.php");
+    header("location: ../Galeria.php");
     exit;
 
 }

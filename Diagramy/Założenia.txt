@@ -110,8 +110,6 @@ Częstotliwość użycia:
 
     Przebieg alternatywny:
 
-        1a. Użytkownik nie jest zalogowany – system odsyła do strony logowania/galerii.
-
         4a. ~ Nazwa jest pusta – system wysyła błąd o pustej nazwie.
 
         4b. ~ Nazwa jest niezgodna ze standardami (np. niedozwolone znaki) – system wysyła błąd o niezgodności ze standardami.
@@ -152,8 +150,6 @@ Częstotliwość użycia:
 
     Przebieg alternatywny:
 
-        1a. Użytkownik nie jest zalogowany – system odsyła do strony logowania/galerii.
-
         4a. ~ Plik nie został wybrany (wartość pusta) – system wysyła błąd o braku pliku.
 
         4b. ~ Plik jest niezgodny ze standardami (zły format, za duży rozmiar, zła rozdzielczość) – system wysyła błąd o odrzuceniu pliku.
@@ -192,8 +188,6 @@ Częstotliwość użycia:
 
     Przebieg alternatywny:
 
-        1a. Użytkownik nie jest zalogowany – system odsyła do strony logowania/galerii.
-
         4a. ~ Nowe hasło jest puste – system wysyła błąd o pustym haśle.
 
         4b. ~ Nowe hasło nie spełnia standardu (np. mniej niż 12 znaków, brak cyfr/znaków specjalnych) – system wysyła błąd o niespełnieniu wymagań.
@@ -221,7 +215,6 @@ Warnuki Końcowe(Sukces)
 Główny przebieg zdarzeń
 
     1.Użytkownik wybiera opcję dodawania nowej pracy graficznej.
-    2.System wyświetla formularz dodawania pracy (polca na: nazwę, opis, cenę oraz pliki graficzne).
     3.Użytkownik wpisuje nazwę pracy.
     4.Użytkownik dodaje opis pracy.
     5.Użytkownik ustala cenę pracy.
@@ -233,9 +226,7 @@ Główny przebieg zdarzeń
 Przebieg alternatywny
     8a. Pole "Nazwa" jest puste lub nie spełnia kryteriów (np. jest za krótkie, za długie lub zawiera niedozwolone znaki) – system wyświetla komunikat o błędzie, przerywa zapis i umożliwia poprawienie nazwy.
 
-    8b. Pole "Cena" zawiera nieprawidłową wartość – system wyświetla komunikat o błędzie, przerywa zapis i pozwala na wpisanie poprawnej ceny.
-
-    8c. Przesłane pliki graficzne nie spełniają wymogów (np. mają nieobsługiwany format lub przekraczają dozwolony rozmiar) – system wyświetla komunikat o błędzie, przerywa zapis i umożliwia wgranie poprawnych plików.
+    8b. Przesłane pliki graficzne nie spełniają wymogów (np. mają nieobsługiwany format lub przekraczają dozwolony rozmiar) – system wyświetla komunikat o błędzie, przerywa zapis i umożliwia wgranie poprawnych plików.
 
 Przebiegi wyjątkowe
 
@@ -271,8 +262,6 @@ Główny przebieg zdarzeń
 
     1.Użytkownik wybiera opcję edycji wybranej pracy graficznej ze swojego portfolio.
 
-    2.System pobiera i wyświetla aktualne dane pracy (nazwę, opis, cenę oraz obecne pliki graficzne) w formularzu edycji.
-
     3.Użytkownik modyfikuje wybrane elementy (nazwę, opis, cenę lub podmienia pliki graficzne).
 
     4.Użytkownik wysyła zaktualizowany formularz do systemu.
@@ -286,9 +275,7 @@ Przebiegi alternatywne
 
     5a. Pole "Nazwa" jest puste lub nie spełnia kryteriów (np. jest za krótkie, za długie lub zawiera niedozwolone znaki) – system wyświetla komunikat o błędzie, przerywa zapis i umożliwia poprawienie nazwy.
 
-    5b. Pole "Cena" zawiera nieprawidłową wartość – system wyświetla komunikat o błędzie, przerywa zapis i pozwala na wpisanie poprawnej ceny.
-
-    5c. Nowo przesłane pliki graficzne nie spełniają wymogów (np. mają nieobsługiwany format lub przekraczają dozwolony rozmiar) – system wyświetla komunikat o błędzie, przerywa zapis i umożliwia wgranie poprawnych plików.
+    5b. Nowo przesłane pliki graficzne nie spełniają wymogów (np. mają nieobsługiwany format lub przekraczają dozwolony rozmiar) – system wyświetla komunikat o błędzie, przerywa zapis i umożliwia wgranie poprawnych plików.
 
 Przebiegi wyjątkowe
 
@@ -312,8 +299,6 @@ Warunki końcowe (Sukces)
 Główny przebieg zdarzeń
 
     Użytkownik wybiera opcję usunięcia wybranej pracy graficznej ze swojego portfolio.
-
-    System wyświetla okno dialogowe z prośbą o potwierdzenie operacji usunięcia.
 
     Użytkownik potwierdza chęć usunięcia pracy.
 

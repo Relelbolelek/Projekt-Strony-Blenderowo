@@ -7,7 +7,7 @@
 </head>
 <body>
     <?php
-        require_once "base.php";
+        require_once "Skrypty\base.php";
     ?>
     <form action="Register.php" method="post">
         <input type="text" name="Name" id="">
