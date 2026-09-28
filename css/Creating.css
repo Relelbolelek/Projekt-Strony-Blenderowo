@@ -32,6 +32,10 @@ header a {
     margin:15px;
 }
 
+main {
+
+    margin-top: 5rem;
+
 }
 html,body {
 
@@ -83,14 +87,21 @@ main {
 }
 input {
 
-    width: 40%;
+    width: 100%;
     padding: 5px;
     border-radius: 10px;
+    
 
+}
+#Header {
+    
+    padding: 0 5px 0 5px;
+    height: 150%;
+    font-size: larger;
 }
 #Imiage-Conatiner {
 
-    
+    width: fit-content;
 
 }
 .Images {
@@ -125,11 +136,77 @@ input {
     border: rgb(122, 74, 74) 2px solid;
     background: rgba(71, 69, 69, 0.5);
     border-radius: 25px;
+    width: 100%;
     object-fit: cover;
-    max-width: 100%;
+
 }
 #wyborPlikow {
 
     display: none;
 
+}
+form {
+    
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: 
+    "box-1 box-4"
+    "hr box-4"
+    "box-2 box-4"
+    "box-3 box-3"
+    "box-5 box-5";
+}
+hr {
+
+    margin: 2rem 0 2rem 0;
+
+}
+textarea {
+
+    resize: none;
+    border:none;
+    width: 100%;
+    margin: 0 0 4rem 0;
+}
+textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+#aside {
+
+
+    padding: 1rem 2rem 1rem 2rem;
+    border: 1px grey solid;
+    margin: 0 2rem 0 2rem;
+    border-radius: 2rem;
+    background-color: rgb(209, 209, 209, 0.3);
+
+}
+#aside button {
+
+    margin-top: 3rem;
+    width: 100%;
+    padding: 0.5rem;
+    background-color: rgb(180, 101, 101);
+    border-radius: 2rem;
+    border:none;
+    font-size: 1rem;
+    color: rgb(214, 214, 214);
+
+}
+#aside button:hover {
+
+    background-color: rgb(117, 48, 48);
+    color: rgb(255, 255, 255);
+
+}
+#aside input[type=number] {
+
+    -moz-appearance:textfield;
+
+}
+#aside input::-webkit-outer-spin-button,
+#aside input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }

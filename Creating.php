@@ -56,21 +56,18 @@
                 exit;
 
             }
-
-            $error = false;
+            $Cena_err = $Name_err =  "";
             require_once "Skrypty\base.php";
             if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                 if(strlen(trim($_POST['Nazwa'])) < 3) {
 
-                    $error = true;
-                    echo "Podaj nazwę nie krutszą niz 3 znaki";
+                    $Name_err = "Podaj nazwę nie krutszą niz 3 znaki";
 
                 }
                 elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST['Nazwa']))) {
 
-                    $error = true;
-                    echo "Podaj nazwę składająca się tylko z liter i cyfr";
+                    $Name_err = "Podaj nazwę składająca się tylko z liter i cyfr";
 
                 }
                 else {
@@ -78,19 +75,88 @@
                     $name = trim($_POST['Nazwa']);
 
                 }
-                
 
-                if(empty($_POST['Zdjecia'])) {
+                if(empty($_POST['Cena'])){
 
-                    $zdjecia = 'templet.png';                
-
-                }
-                else{
-
-                    $zdjecia = 'templet.png';
+                    $Cena = trim($_POST['Cena']);
 
                 }
-                if($error == false) {
+                if(!preg_match('/^[0-9_]+$/', trim($_POST['Cena']))) {
+
+                    $Cena_err = "Cena powinsa zawierać tylko numery";
+
+                }
+                else {
+
+                    $cena = trim($_POST['Cena']);
+
+                }
+                $zdjecia = "jajo";
+
+                if(empty($Cena_err) && empty($Name_err)) {
+                    
+                        $target_dir = "Users/".$_SESSION['id']."/Gallery/".$name;
+                        if (!file_exists($target_dir)) {
+                            // Tworzymy folder
+                            // 0777 to uprawnienia dostępu, a true pozwala na tworzenie zagnieżdżonych struktur (np. folderów w folderach)
+                            if (mkdir($target_dir, 0777, true)) {
+
+                            } else {
+
+                            }
+                        } else {
+
+                        }
+                        $target_dir = "Users/".$_SESSION['id']."/Gallery/".$name."/";
+                        if (isset($_FILES["fileToUpload"])) {
+                            
+                            // Liczba przesłanych plików
+                            $totalFiles = count($_FILES["fileToUpload"]["name"]);
+                            echo $totalFiles."asdasdadsdsaasd";
+                            // Pętla przechodząca przez każdy plik po kolei
+                            for ($i = 0; $i < $totalFiles; $i++) {
+                                
+                                $fileName = basename($_FILES["fileToUpload"]["name"][$i]);
+                                $target_file = $target_dir . $fileName;
+                                $uploadOk = 1;
+                                $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+                                // Sprawdzanie czy plik to obraz
+                                $check = getimagesize($_FILES["fileToUpload"]["tmp_name"][$i]);
+                                if ($check === false) {
+                                    echo "Plik " . $fileName . " nie jest obrazem.<br>";
+                                    continue; // przejdź do następnego pliku
+                                }
+
+                                // Sprawdzanie czy plik już istnieje
+                                if (file_exists($target_file)) {
+                                    echo "Przepraszamy, plik " . $fileName . " już istnieje.<br>";
+                                    continue;
+                                }
+
+                                // Sprawdzanie rozmiaru (np. 500KB)
+                                if ($_FILES["fileToUpload"]["size"][$i] > 4000000) {
+                                    echo "Przepraszamy, plik " . $fileName . " jest za duży.<br>";
+                                    continue;
+                                }
+
+                                // Dozwolone formaty
+                                if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+                                    echo "Przepraszamy, plik " . $fileName . " ma niedozwolony format.<br>";
+                                    continue;
+                                }
+
+                                // Próba uploadu konkretnego pliku
+                                if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"][$i], $target_file)) {
+                                    echo "Plik " . htmlspecialchars($fileName) . " został pomyślnie wgrany.<br>";
+                                } else {
+                                    echo "Wystąpił błąd podczas wgrywania pliku " . $fileName . ".<br>";
+                                }
+                            }
+                        }
+
+
+
                     $sql ="SELECT COUNT(`User_ID`) FROM gallery WHERE User_ID = ?";
                     if($stmt = mysqli_prepare($link,$sql)) {
 
@@ -120,7 +186,7 @@
                         $sql='INSERT INTO `gallery` (`ID`, `User_ID`, `Name`, `Discription`, `image_ID`, `Price`, `Website_ID`) VALUES (NULL,?,?,?,?,?,?)';
                         if($stmt = mysqli_prepare($link,$sql)){
 
-                            mysqli_stmt_bind_param($stmt,"isssii",$_SESSION['id'],$name,$_POST['Opis'],$zdjecia,$_POST['Cena'],$WebSiteNumber);
+                            mysqli_stmt_bind_param($stmt,"isssii",$_SESSION['id'],$name,$_POST['Opis'],$zdjecia,$cena,$WebSiteNumber);
                             if(mysqli_stmt_execute($stmt)){
 
                                 header("location: galeria.php");
@@ -157,18 +223,28 @@
             <button type="submit"></button>
 </form> -->
     <section>
-        <form action="zapisz.php" method="POST" enctype="multipart/form-data">
-            <div>
-                    <input type="text" name="" id="" placeholder="Podaj tytuł:">
+        <form action="Creating.php" method="POST" enctype="multipart/form-data">
+            <div style="grid-area: box-1;">
+                    <input id="Header" type="text" name="Nazwa" id="" placeholder="Podaj tytuł:" maxlength="30">
             </div>
-            <div id='Imiage-Conatiner'>
+            <hr style="grid-area: hr;">
+            <div id='Imiage-Conatiner' style="grid-area: box-2;">
                 <img class='Images' id="Template" src="templet.png" alt="">
             </div>
-            <section id='mini-container'>
+            <section id='mini-container' style="grid-area: box-3;">
                 <label for="wyborPlikow" class="Imiage-add" id="adding_button">
-                    <form action="zapisz.php" method="POST" enctype="multipart/form-data" >
-                        <input type="file" id="wyborPlikow" name="obrazy[]" multiple accept="image/*0" value="">
+                    <input type="file" id="wyborPlikow" name="fileToUpload[]" multiple accept="image/*" value="">
                 </label>
+            </section>
+            <section style="grid-area: box-5;">
+                <hr>
+                <p>
+                    <textarea name="Opis" id="" rows="20" placeholder="Dodaj opis"></textarea>
+                </p>
+            </section>
+            <section style="grid-area: box-4;" id="aside">
+                <input type="text" inputmode="numeric" name="Cena" id="" placeholder="Podaj cene (o ile chcesz)" maxlength="5">
+                <button type="submit" name="submit">Dodaj</button>
             </section>
         </form>
     </section>
@@ -179,11 +255,16 @@
 </div>
 <script>
     let iloscobrazkow = 0;
+    function SwtichImiage(ImigeNumber) {
+        src = event.target.src;
+        const img = document.getElementById('Template').src = src;
+    }
+
     const inputPlikow = document.getElementById('wyborPlikow');
     const kontener = document.getElementById('Imiage-Conatiner');
     const miniaturka = document.getElementById('mini-container');
 
-    let wybranePliki = [];
+    let wybranePliki = []; // Tutaj gromadzimy pliki z wielu wyboru inputa
 
     // Definiujemy dozwolone typy MIME oraz maksymalny rozmiar w bajtach (4 MB)
     const dozwoloneTypy = ['image/jpeg', 'image/png', 'image/jpg'];
@@ -193,45 +274,112 @@
         const nowefile = Array.from(e.target.files);
 
         for (let plik of nowefile) {
-            // 1. Sprawdzenie limitu liczby plików (np. max 7)
+            // 1. Sprawdzenie limitu liczby plików (max 7)
             if (wybranePliki.length >= 7) {
                 alert('Możesz dodać maksymalnie 7 obrazków!');
                 break;
             }
 
-            // 2. Sprawdzenie rozszerzenia (typu pliku)
+            // Sprawdzenie duplikatów
+            const czyDuplikat = wybranePliki.some(
+                istniejacy => istniejacy.name === plik.name && istniejacy.size === plik.size
+            );
+            if (czyDuplikat) {
+                alert(`Plik "${plik.name}" został już dodany!`);
+                continue; 
+            }
+
+            // 2. Sprawdzenie rozszerzenia
             if (!dozwoloneTypy.includes(plik.type)) {
                 alert(`Plik "${plik.name}" ma niedozwolony format. Dozwolone są tylko pliki JPG, JPEG i PNG.`);
-                continue; // Pomiń ten plik i przejdź do następnego
+                continue; 
             }
 
             // 3. Sprawdzenie wagi pliku (max 4 MB)
             if (plik.size > maksymalnyRozmiar) {
                 alert(`Plik "${plik.name}" jest za duży! Maksymalny rozmiar to 4 MB.`);
-                continue; // Pomiń ten plik
+                continue; 
             }
 
-            // Jeśli wszystko OK, dodajemy plik do tablicy i tworzymy podgląd
+            // Dodajemy plik do naszej globalnej tablicy
             wybranePliki.push(plik);
             
-            if(iloscobrazkow == 0) {
+            const afterblock = document.getElementById('adding_button');
+            
 
-                const img = document.getElementById('Template').src=URL.createObjectURL(plik);
-                const div = document.createElement('img');
-                const imgMini = document.createElement('img');
-                img.src = URL.createObjectURL(plik);
-                div.src = URL.createObjectURL(plik);
-                div.classList.add('Imiage-Miniature');
-                miniaturka.appendChild(div);
+            document.getElementById('Template').src = URL.createObjectURL(plik);
 
+
+            const kontenerMiniaturki = document.createElement('div');
+            kontenerMiniaturki.style.height = "75px";
+
+            const imgMini = document.createElement('img');
+            imgMini.src = URL.createObjectURL(plik);
+            imgMini.classList.add('Imiage-Miniature');
+            
+            // Przypisanie zdarzenia kliknięcia do zmiany głównego podglądu
+            let aktualnyIndeks = iloscobrazkow;
+            imgMini.onclick = () => SwtichImiage(aktualnyIndeks);
+            imgMini.id = "ImiageNumber" + iloscobrazkow;
+
+            kontenerMiniaturki.appendChild(imgMini);
+            afterblock.before(kontenerMiniaturki);
+            
+            iloscobrazkow++;
+            if (iloscobrazkow >= 7) {
+                afterblock.style.display = "none";
+                break;
             }
-
-
-
         }
         
-        // Opcjonalnie: resetujemy input, aby użytkownik mógł w razie potrzeby wybrać ten sam plik ponownie
+        // Czścimy input, żeby użytkownik mógł wybrać ten sam plik ponownie, jeśli zechce
         inputPlikow.value = '';
+    });
+
+    // OBSŁUGA WYSŁANIA FORMULARZA PRZEZ JAVASCRIPT (AJAX)
+    const formularz = document.querySelector('form');
+
+    formularz.addEventListener('submit', function(e) {
+        e.preventDefault(); // Zatrzymujemy domyślne, puste przeładowanie formularza
+
+        // Walidacja podstawowa w JS (opcjonalnie)
+        const nazwaTytul = document.getElementById('Header').value.trim();
+        if (nazwaTytul.length < 3) {
+            alert("Podaj nazwę nie krótszą niż 3 znaki!");
+            return;
+        }
+
+        if (wybranePliki.length === 0) {
+            alert("Musisz dodać przynajmniej jeden obrazek!");
+            return;
+        }
+
+        // Tworzymy obiekt FormData z danymi formularza
+        const formData = new FormData(formularz);
+
+        // Usuwamy domyślne pole plików z formularza (bo jest puste)
+        formData.delete('fileToUpload[]');
+
+        // Doklejamy do FormData wszystkie pliki, które użytkownik nazbierał w tablicy `wybranePliki`
+        wybranePliki.forEach(plik => {
+            formData.append('fileToUpload[]', plik);
+        });
+
+        // Wysyłamy dane asynchronicznie do pliku PHP
+        fetch('Creating.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log("Odpowiedź serwera:", data);
+            // Tutaj możesz sprawdzić co zwrócił PHP lub przekierować użytkownika
+            window.location.href = 'galeria.php';
+        })
+        .catch(error => {
+            console.error('Błąd podczas wysyłania:', error);
+            alert("Wystąpił błąd podczas przesyłania danych.");
+        });
     });
 </script>
 </body>
