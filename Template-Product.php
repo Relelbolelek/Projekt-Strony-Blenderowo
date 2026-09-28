@@ -3,20 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/galeria.css">
-    <title><?php echo $row['Name']; ?>></title>
+    <link rel="stylesheet" href="../css/Creating.css">
+    <title>Galeria</title>
 </head>
 <body>
     <div Class='Main-Conainer'>
         <?php
-
     session_start();
 
         if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-
             echo '
                 <header>
-                    <a class="logo" href="galeria.php">Blenderowo</a>
+                    <a class="logo" href="../galeria.php">Blenderowo</a>
                     <a href="Logout.php">
                     Wyloguj się
                     <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#8b6966"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/></svg>
@@ -27,13 +25,10 @@
                     </a>
                 </header>
             ';
-
-        }
-        else {
-
+        } else {
             echo '
                 <header>
-                    <a class="logo" href="galeria.php">Blenderowo</a>
+                    <a class="logo" href="../galeria.php">Blenderowo</a>
                     <a href="Login.php">
                     Zaloguj się
                     <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#8b6966"><path d="M480.67-120v-66.67h292.66v-586.66H480.67V-840h292.66q27 0 46.84 19.83Q840-800.33 840-773.33v586.66q0 27-19.83 46.84Q800.33-120 773.33-120H480.67Zm-63.34-176.67-47-48 102-102H120v-66.66h351l-102-102 47-48 184 184-182.67 182.66Z"/></svg>
@@ -48,14 +43,147 @@
     ?>
 
     <main>
-        <h1><?php echo $row['Name']; ?></h1>
-        <p><?php echo $row['Discription']; ?></p>
-        <p><?php echo $row['Price']; ?></p>
-        <p><?php echo '<a href="profile.php?id='.$row['User_ID'].'">autor</a>'; ?></p>
+        <section>
+            <form action="Creating.php" method="POST" enctype="multipart/form-data">
+                <div style="grid-area: box-1;">
+                    <h1><?php echo $row['Name'] ?></h1>
+                </div>
+                <hr style="grid-area: hr;">
+                <div id='Imiage-Conatiner' style="grid-area: box-2;">
+                    <img class='Images' id="Template" src="<?php
+                        $sciezkaObrazka = "../" . $row['image_ID'];
+                        echo $sciezkaObrazka; 
+                    ?>" alt="jajo">
+                </div>
+                <section id='mini-container' style="grid-area: box-3;">
+                    
+                </section>
+                <section style="grid-area: box-5;">
+                    <hr>
+                    <p>
+                        <?php echo $row['Discription'] ?>
+                    </p>
+                </section>
+                <section style="grid-area: box-4;" id="aside">
+                    <?php echo "Cena: ".$row['Price'] ?>
+                </section>
+            </form>
+        </section>
     </main>
     <footer>
         Jajko
     </footer>
 </div>
+<script>
+    let iloscobrazkow = 0;
+    function SwtichImiage(ImigeNumber) {
+        let src = event.target.src;
+        document.getElementById('Template').src = src;
+    }
+
+    const inputPlikow = document.getElementById('wyborPlikow');
+    const kontener = document.getElementById('Imiage-Conatiner');
+    const miniaturka = document.getElementById('mini-container');
+
+    let wybranePliki = []; 
+
+    const dozwoloneTypy = ['image/jpeg', 'image/png', 'image/jpg'];
+    const maksymalnyRozmiar = 4 * 1024 * 1024; 
+
+    inputPlikow.addEventListener('change', function(e) {
+        const nowefile = Array.from(e.target.files);
+
+        for (let plik of nowefile) {
+            if (wybranePliki.length >= 7) {
+                alert('Możesz dodać maksymalnie 7 obrazków!');
+                break;
+            }
+
+            const czyDuplikat = wybranePliki.some(
+                istniejacy => istniejacy.name === plik.name && istniejacy.size === plik.size
+            );
+            if (czyDuplikat) {
+                alert(`Plik "${plik.name}" został już dodany!`);
+                continue; 
+            }
+
+            if (!dozwoloneTypy.includes(plik.type)) {
+                alert(`Plik "${plik.name}" ma niedozwolony format.`);
+                continue; 
+            }
+
+            if (plik.size > maksymalnyRozmiar) {
+                alert(`Plik "${plik.name}" jest za duży!`);
+                continue; 
+            }
+
+            wybranePliki.push(plik);
+            
+            const afterblock = document.getElementById('adding_button');
+            
+            document.getElementById('Template').src = URL.createObjectURL(plik);
+
+            const kontenerMiniaturki = document.createElement('div');
+            kontenerMiniaturki.style.height = "75px";
+
+            const imgMini = document.createElement('img');
+            imgMini.src = URL.createObjectURL(plik);
+            imgMini.classList.add('Imiage-Miniature');
+            
+            let aktualnyIndeks = iloscobrazkow;
+            imgMini.onclick = () => SwtichImiage(aktualnyIndeks);
+            imgMini.id = "ImiageNumber" + iloscobrazkow;
+
+            kontenerMiniaturki.appendChild(imgMini);
+            afterblock.before(kontenerMiniaturki);
+            
+            iloscobrazkow++;
+            if (iloscobrazkow >= 7) {
+                afterblock.style.display = "none";
+                break;
+            }
+        }
+        
+        inputPlikow.value = '';
+    });
+
+    const formularz = document.querySelector('form');
+
+    formularz.addEventListener('submit', function(e) {
+        e.preventDefault(); 
+
+        const nazwaTytul = document.getElementById('Header').value.trim();
+        if (nazwaTytul.length < 3) {
+            alert("Podaj nazwę nie krótszą niż 3 znaki!");
+            return;
+        }
+
+        if (wybranePliki.length === 0) {
+            alert("Musisz dodać przynajmniej jeden obrazek!");
+            return;
+        }
+
+        const formData = new FormData(formularz);
+        formData.delete('fileToUpload[]');
+
+        wybranePliki.forEach(plik => {
+            formData.append('fileToUpload[]', plik);
+        });
+
+        fetch('Creating.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log("Odpowiedź serwera:", data);
+            window.location.href = 'galeria.php';
+        })
+        .catch(error => {
+            console.error('Błąd podczas wysyłania:', error);
+            alert("Wystąpił błąd podczas przesyłania danych.");
+        });
+    });
+</script>
 </body>
-</html>  
+</html>
