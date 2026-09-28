@@ -1,0 +1,54 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Strona-1" id="r98j1XMivz2RspbSRgbr">
+    <mxGraphModel dx="966" dy="557" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="NUrDtjDTE4Iq2DJ5t4yr-5" edge="1" parent="1" source="NUrDtjDTE4Iq2DJ5t4yr-1" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0;exitDx=0;exitDy=0;endArrow=none;endFill=0;startArrow=classic;startFill=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="20" y="200.17" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NUrDtjDTE4Iq2DJ5t4yr-29" edge="1" parent="1" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=1;exitDx=0;exitDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="150" y="398.9999999999998" as="sourcePoint" />
+            <mxPoint x="20" y="399" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NUrDtjDTE4Iq2DJ5t4yr-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#a20025;fontColor=#ffffff;strokeColor=#6F0000;" value="" vertex="1">
+          <mxGeometry height="200" width="10" x="150" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="NUrDtjDTE4Iq2DJ5t4yr-7" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Użytkownik zmienia wybrane dane" vertex="1">
+          <mxGeometry height="30" width="130" x="20" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="NUrDtjDTE4Iq2DJ5t4yr-31" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Odszyła do galeria.php" vertex="1">
+          <mxGeometry height="40" width="110" x="30" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="NUrDtjDTE4Iq2DJ5t4yr-32" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" value="Użytkownik" vertex="1">
+          <mxGeometry height="60" width="120" x="80" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NUrDtjDTE4Iq2DJ5t4yr-33" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#a20025;fontColor=#ffffff;strokeColor=#6F0000;" value=":System" vertex="1">
+          <mxGeometry height="60" width="120" x="240" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NUrDtjDTE4Iq2DJ5t4yr-34" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;" value=":Baza Danych" vertex="1">
+          <mxGeometry height="60" width="120" x="400" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="NUrDtjDTE4Iq2DJ5t4yr-37" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#a20025;fontColor=#ffffff;strokeColor=#6F0000;" value="" vertex="1">
+          <mxGeometry height="160" width="10" x="320" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="NUrDtjDTE4Iq2DJ5t4yr-43" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Wysyła zwalidowane dane(dane)" vertex="1">
+          <mxGeometry height="30" width="160" x="160" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="NUrDtjDTE4Iq2DJ5t4yr-53" edge="1" parent="1" source="NUrDtjDTE4Iq2DJ5t4yr-43" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;innerLoopWaypoints=1;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=1;entryDx=0;entryDy=0;" target="NUrDtjDTE4Iq2DJ5t4yr-43">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NUrDtjDTE4Iq2DJ5t4yr-55" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Zapisuje dane" vertex="1">
+          <mxGeometry height="30" width="160" x="160" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="NUrDtjDTE4Iq2DJ5t4yr-56" edge="1" parent="1" source="NUrDtjDTE4Iq2DJ5t4yr-55" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;innerLoopWaypoints=1;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;dashed=1;" target="NUrDtjDTE4Iq2DJ5t4yr-55">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
