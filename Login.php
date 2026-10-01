@@ -70,7 +70,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 $_SESSION['id'] = $id;
                                 $_SESSION['username'] = $username;
 
-                                header("location: FolderCreate.php");
+                                header("location: Skrypty/FolderCreate.php");
                                 
                             }
                             else {

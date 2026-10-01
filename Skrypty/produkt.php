@@ -5,7 +5,7 @@ $idProduktu = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 // 2. Pobieramy dane produktu z bazy danych (symulacja)
 // $db -> tu połączenie z bazą
-$sql = "SELECT * FROM `gallery` WHERE ID=".$idProduktu;
+$sql = "SELECT gallery.ID as GID,image_gallery.ID as igID,gallery.User_ID,gallery.Name,gallery.Discription,gallery.image_ID,CONCAT(FORMAT(gallery.Price, 2), ' PLN') AS Price,gallery.Website_ID,image_gallery.Id_Pracy,image_gallery.Imiage_name FROM gallery,image_gallery WHERE gallery.ID = image_gallery.Id_Pracy AND gallery.ID=$idProduktu GROUP BY image_gallery.ID";
 $query = mysqli_query($link,$sql); 
 $row = mysqli_fetch_assoc($query);
 
@@ -17,7 +17,7 @@ if (!$query) {
 
 // 3. Włączamy buforowanie wyjścia i dołączamy szablon
 ob_start();
-include '../Template-Product.php';
+include '../Templates/Template-Product.php';
 $stronaProduktu = ob_get_clean();
 
 // 4. Wyświetlamy gotową stronę użytkownikowi

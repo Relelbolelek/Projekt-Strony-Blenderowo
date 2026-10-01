@@ -21,7 +21,7 @@ else{
             }
         
     }   
-    header("Location: galeria.php");
+    header("Location: ../galeria.php");
     exit;
 }
 ?>

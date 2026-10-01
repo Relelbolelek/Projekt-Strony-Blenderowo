@@ -21,7 +21,7 @@
                     Wyloguj się
                     <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#8b6966"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/></svg>
                     </a>
-                    <a href="Profile.php?id='.$_SESSION['id'].'">
+                    <a href="skrypty/Profile.php?id='.$_SESSION['id'].'">
                     Profil
                     <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#8b6966"><path d="M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm146.5-204.5Q340-521 340-580t40.5-99.5Q421-720 480-720t99.5 40.5Q620-639 620-580t-40.5 99.5Q539-440 480-440t-99.5-40.5ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm100-95.5q47-15.5 86-44.5-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160q53 0 100-15.5ZM523-537q17-17 17-43t-17-43q-17-17-43-17t-43 17q-17 17-17 43t17 43q17 17 43 17t43-17Zm-43-43Zm0 360Z"/></svg>
                     </a>
@@ -48,7 +48,7 @@
     ?>
     <?php
         require_once "Skrypty\base.php";
-        $sql = "SELECT gallery.ID as Pid,User_ID,Name,Price,image_ID,username FROM `gallery`,users WHERE gallery.User_ID = users.id";
+        $sql = "SELECT gallery.ID as Pid,User_ID,LEFT(NAME, 15) as Name,CONCAT(FORMAT(Price, 2), ' PLN') AS Price,image_ID,username FROM `gallery`,users WHERE gallery.User_ID = users.id";
         $query = mysqli_query($link,$sql);
 
         
@@ -57,8 +57,9 @@
     <?php while($row = mysqli_fetch_assoc($query)):?>
         <div class="product_conteiner">
             <a style="grid-area: box-1;" href="Skrypty\produkt.php?id=<?php echo $row['Pid']; ?>"><img src="<?php echo htmlspecialchars($row['image_ID']) ?>" alt=""></a>
-            <a class="a1" style="grid-area: box-2;" href="Skrypty\produkt.php?id=<?php echo $row['Pid']; ?>"> <?php echo htmlspecialchars($row['Name']) ?></a>
-            <a class="a2" style="grid-area: box-3;" href="Skrypty\produkt.php?id=<?php echo $row['Pid']; ?>"><?php echo htmlspecialchars($row['Price']).',00zł' ?></a>
+            <a class="a1" style="grid-area: box-2;" href="Skrypty\produkt.php?id=<?php echo $row['Pid']; ?>"> <?php
+                echo htmlspecialchars($row['Name']);if(strlen($row['Name']) > 14){ echo '...';} ?></a>
+            <a class="a2" style="grid-area: box-3;" href="Skrypty\produkt.php?id=<?php echo $row['Pid']; ?>"><?php echo htmlspecialchars($row['Price']) ?></a>
             <span class="bebas-neue-regular" style="grid-area: box-4;">Autor: <a class="bebas-neue-regular" href=<?php echo "Skrypty\Profile.php?id=".$row['User_ID'] ?>><?php echo htmlspecialchars($row['username']) ?></a> </span>
         </div>
     <?php endwhile?>

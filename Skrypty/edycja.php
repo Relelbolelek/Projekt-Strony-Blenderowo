@@ -17,7 +17,7 @@ if (!$query) {
 
 // 3. Włączamy buforowanie wyjścia i dołączamy szablon
 ob_start();
-include '../Template-Edycja.php';
+include '../Templates/Template-Edycja.php';
 $stronaProduktu = ob_get_clean();
 
 // 4. Wyświetlamy gotową stronę użytkownikowi

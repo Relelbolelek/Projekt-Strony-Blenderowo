@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/Creating.css">
+    <link rel="stylesheet" href="../css/Creating.css">
     <title>Galeria</title>
 </head>
 <body>
@@ -44,13 +44,19 @@
 
     <main>
         <?php
+            require_once "base.php";
+            $sql = "SELECT gallery.ID as GID,image_gallery.ID as igID,gallery.User_ID,gallery.Name,gallery.Discription,gallery.image_ID,CONCAT(FORMAT(gallery.Price, 2), ' PLN') AS Price,gallery.Website_ID,image_gallery.Id_Pracy,image_gallery.Imiage_name FROM gallery,image_gallery WHERE gallery.ID = image_gallery.Id_Pracy AND gallery.ID=61 GROUP BY image_gallery.ID";
+            $query = mysqli_query($link,$sql); 
+            $row = mysqli_fetch_assoc($query);
+        ?>
+        <?php
             if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 header("location: login.php");
                 exit;
             }
 
             $Cena_err =$Name_err = "";
-            require_once "Skrypty/base.php";
+
 
             if($_SERVER["REQUEST_METHOD"] == "POST"){
 
@@ -155,7 +161,7 @@
     <section>
         <form action="Creating.php" method="POST" enctype="multipart/form-data">
             <div style="grid-area: box-1;">
-                    <input id="Header" type="text" name="Nazwa" placeholder="Podaj tytuł:" maxlength="30">
+                    <input id="Header" type="text" name="Nazwa" value="<?php echo $row['Name'] ?>" placeholder="Podaj tytuł:" maxlength="30">
             </div>
             <hr style="grid-area: hr;">
             <div id='Imiage-Conatiner' style="grid-area: box-2;">
@@ -169,11 +175,11 @@
             <section style="grid-area: box-5;">
                 <hr>
                 <p>
-                    <textarea name="Opis" rows="20" placeholder="Dodaj opis"></textarea>
+                    <textarea name="Opis" rows="20" placeholder="Dodaj opis"><?php echo $row['Discription'] ?></textarea>
                 </p>
             </section>
             <section style="grid-area: box-4;" id="aside">
-                <input type="text" inputmode="numeric" name="Cena" placeholder="Podaj cene (o ile chcesz)" maxlength="5">
+                <input type="text" inputmode="numeric" name="Cena" value="<?php echo $row['Price'] ?>" placeholder="Podaj cene (o ile chcesz)" maxlength="5">
                 <button type="submit" name="submit">Dodaj</button>
             </section>
         </form>

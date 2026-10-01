@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Changa+One:ital@0;1&display=swap');
-
 * {
 
     margin: 0;
@@ -151,7 +150,7 @@ form {
     display: grid;
     grid-template-columns: auto 1fr;
     grid-template-areas: 
-    "box-1 box-4"
+    "box-1 box-1"
     "hr box-4"
     "box-2 box-4"
     "box-3 box-3"
@@ -181,11 +180,12 @@ textarea:focus {
     margin: 0 2rem 0 2rem;
     border-radius: 2rem;
     background-color: rgb(209, 209, 209, 0.3);
+    height: fit-content;
+    text-align: center;
 
 }
 #aside button {
 
-    margin-top: 3rem;
     width: 100%;
     padding: 0.5rem;
     background-color: rgb(180, 101, 101);
@@ -212,3 +212,23 @@ textarea:focus {
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
+h2 {
+
+    font-size: 2rem;
+
+}
+#star-container {
+
+    margin:1rem 0 1rem 0;
+
+}
+.fa-star::before {
+
+    font-family: fontAwesome;
+    font-size: 2.5rem !important;
+}
+.checked {
+
+    color:orange;
+
+}
