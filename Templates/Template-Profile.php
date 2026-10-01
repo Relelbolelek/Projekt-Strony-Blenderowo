@@ -69,7 +69,7 @@
                 <p> <?php echo htmlspecialchars($row['Discription']) ?> </p>
                 <?php if(isset($_SESSION['id'])){ 
                     if($_SESSION['id'] == $idprofilu) {
-                        echo '<p><a href="edycja.php?id='.$row['ID'].'">Edytuj</a></p>';
+                        echo '<p><a href="edycja.php?idEdycji='.$row['ID'].'">Edytuj</a></p>';
                         echo '<p><a href="Produkt-Usun.php?id='.$idprofilu.'&idproduktu='.$row['ID'].'">Usuń</a></p>';
                     }
                 } ?>
