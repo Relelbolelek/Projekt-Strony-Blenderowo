@@ -55,16 +55,16 @@
             if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                 if(strlen(trim($_POST['Nazwa'])) < 3) {$Name_err = "Podaj nazwę nie krótszą niż 3 znaki";
-                } elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST['Nazwa']))) {$Name_err = "Podaj nazwę składającą się tylko z liter i cyfr";
+                } elseif(!preg_match('/^[\p{L}\p{N}_ ]+$/u', trim($_POST['Nazwa']))) {$Name_err = "Podaj nazwę składającą się tylko z liter i cyfr";
                 } else {
                     $name = trim($_POST['Nazwa']);
                 }
 
-                if(!empty($_POST['Cena']) && !preg_match('/^[0-9_]+$/', trim($_POST['Cena']))) {$Cena_err = "Cena powinna zawierać tylko cyfry";
+                if(!empty($_POST['Cena']) && !preg_match('/^[0-9]+([.,][0-9]+)?$/u', trim($_POST['Cena']))) {$Cena_err = "Cena powinna zawierać tylko cyfry";
                 } else {
                     $cena = !empty($_POST['Cena']) ? trim($_POST['Cena']) : 0;
                 }
-
+                
                 if(empty($Cena_err) && empty($Name_err)) {
                     
                     // 1. Pobieramy Website_ID (licznik prac użytkownika)

@@ -5,7 +5,7 @@
 </head>
 <body>
     <?php
-        require_once "Skrypty\base.php";
+        require_once "..\Skrypty\base.php";
         $sql = 'SELECT * FROM `gallery` WHERE id='.$idedycji;
         $query = mysqli_query($link,$sql);
     ?>
@@ -24,7 +24,7 @@
 
         }
         $error = false;
-        require_once "Skrypty\base.php";
+        require_once "base.php";
         if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             if(strlen(trim($_POST['Nazwa'])) < 3) {
@@ -33,7 +33,7 @@
                 echo "Podaj nazwę nie krutszą niz 3 znaki";
 
             }
-            elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST['Nazwa']))) {
+            elseif(!preg_match('/^[\p{L}\p{N}_ ]+$/u', trim($_POST['Nazwa']))) {
 
                 $error = true;
                 echo "Podaj nazwę składająca się tylko z liter i cyfr";
@@ -48,7 +48,7 @@
 
             if(empty($_POST['Zdjecia'])) {
 
-                $zdjecia = 'templet.png';                
+                $zdjecia = $row['image_ID'];              
 
             }
             else{
@@ -89,7 +89,7 @@
                         mysqli_stmt_bind_param($stmt,"ssis",$name,$_POST['Opis'],$_POST['Cena'],$zdjecia);
                         if(mysqli_stmt_execute($stmt)){
 
-                            header("location: galeria.php");
+                            header("location: ../galeria.php");
                             exit;                 
                         }
                     }
