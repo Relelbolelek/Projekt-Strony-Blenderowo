@@ -60,14 +60,14 @@
                     <?php
                         echo '
                             <div style="height: 75px;" onclick="ImiageSwitch(this)">
-                            <img class="Imiage-Miniature" src="/KP/Projekt-Strony-Blenderowo/'.htmlspecialchars($row['Imiage_name']).'">
+                            <img class="Imiage-Miniature" src="../'.htmlspecialchars($row['Imiage_name']).'">
                             </div>
                         ';
                         while($imgRow = mysqli_fetch_assoc($query)){
                             
                             echo '
                             <div style="height: 75px;" onclick="ImiageSwitch(this)">
-                            <img class="Imiage-Miniature" src="/KP/Projekt-Strony-Blenderowo/'.htmlspecialchars($imgRow['Imiage_name']).'">
+                            <img class="Imiage-Miniature" src="../'.htmlspecialchars($imgRow['Imiage_name']).'">
                             </div>
                             ';
                             
@@ -84,11 +84,18 @@
                     <?php echo '<h2>'.$row['Price'].'</h2>' ?>
                     <button >Dodaj do koszyka</button>
                     <div id='star-container'>
-                        <i class="fa-normal fa-star" style="color: rgb(44, 44, 44);"></i>
-                        <i class="fa-normal fa-star" style="color: rgb(44, 44, 44);"></i>
-                        <i class="fa-normal fa-star" style="color: rgb(44, 44, 44);"></i>
-                        <i class="fa-normal fa-star" style="color: rgb(44, 44, 44);"></i>
-                        <i class="fa-normal fa-star" style="color: rgb(44, 44, 44);"></i>
+                        <?php
+                            $Amountofstar = 5-$row['Ocena'];
+                            for($i=0;$i<$row['Ocena']; $i++) {
+                                echo '<i class="fa-normal fa-star" style="color: rgb(255, 217, 0);"></i>';
+                            }
+                            for($i=0;$i<$Amountofstar; $i++)    {
+
+                                echo '<i class="fa-normal fa-star" style="color: rgb(82, 82, 82);"></i>';
+
+                            } 
+                        ?>
+                        
 
                     </div>
                     <?php echo '<a href="..\Skrypty\Profile.php?id='.$row['User_ID'].'">Autor</a>' ?>
@@ -104,8 +111,7 @@
 
             const imgElement = clickedDiv.firstElementChild;
             var src = imgElement.src;
-            document.getElementById('Template').src=src;
-
+            document.getElementById('Template').src=src; 
         }
     </script>
 </div>
