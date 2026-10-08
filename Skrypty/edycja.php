@@ -5,7 +5,7 @@ $idedycji = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 // 2. Pobieramy dane produktu z bazy danych (symulacja)
 // $db -> tu połączenie z bazą
-$sql = "SELECT * FROM `gallery` WHERE ID=".$idedycji;
+$sql = "SELECT `Name` FROM `gallery` WHERE ID=44";
 $query = mysqli_query($link,$sql); 
 $row = mysqli_fetch_assoc($query);
 

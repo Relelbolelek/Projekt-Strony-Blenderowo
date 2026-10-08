@@ -5,7 +5,7 @@ $idprofilu = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 // 2. Pobieramy dane produktu z bazy danych (symulacja)
 // $db -> tu połączenie z bazą
-$sql = "SELECT * FROM `users` WHERE id=".$idprofilu;
+$sql = 'SELECT users.id,users.created_at,users.username,COUNT(gallery.User_ID) as "iloscprac",gallery.ID as "PID" FROM `users`,gallery WHERE gallery.User_ID='.$idprofilu.' AND gallery.User_ID = users.id';
 $query = mysqli_query($link,$sql); 
 $row = mysqli_fetch_assoc($query);
 
