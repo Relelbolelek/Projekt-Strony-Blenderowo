@@ -186,36 +186,7 @@
 <script>
     const afterblock = document.getElementById('adding_button');
     let iloscobrazkow = 0;
-    function SwtichImiage() {
-        let src = event.target.src;
-        document.getElementById('Template').src = src;
-    }
-    function RemoveImiage(fileName) {
 
-        const index = wybranePliki.findIndex(plik => plik.name === fileName)
-        if (index !== -1) {
-            wybranePliki.splice(index, 1); // Usuwamy 1 element podnalezionym indeksem
-        }
-        const elementDoUsuwania = document.getElementById(fileName);
-        if (elementDoUsuwania) {
-            elementDoUsuwania.remove();
-        }
-        if (iloscobrazkow >= 7) {
-            afterblock.style.display = "block";
-        }
-    }
-    function EditImiage(fileName, NewFile) {
-
-        const index = wybranePliki.findIndex(plik => plik.name === fileName)
-        if (index !== -1) {
-            wybranePliki.splice(index, 1, newfile); // Usuwamy 1 element podnalezion
-        }
-        const elementDoUsuwania = document.getElementById(fileName);
-        if (elementDoUsuwania) {
-            elementDoUsuwania.remove();
-        }    
-
-    }
 
     const inputPlikow = document.getElementById('wyborPlikow');
     const kontener = document.getElementById('Imiage-Conatiner');
@@ -226,6 +197,7 @@
     const dozwoloneTypy = ['image/jpeg', 'image/png', 'image/jpg'];
     const maksymalnyRozmiar = 4 * 1024 * 1024; 
 
+    
     inputPlikow.addEventListener('change', function(e) {
         const nowefile = Array.from(e.target.files);
 
@@ -288,7 +260,38 @@
         }
         
         inputPlikow.value = '';
+        
     });
+        function SwtichImiage() {
+        let src = event.target.src;
+        document.getElementById('Template').src = src;
+    }
+    function RemoveImiage(fileName) {
+
+        const index = wybranePliki.findIndex(plik => plik.name === fileName)
+        if (index !== -1) {
+            wybranePliki.splice(index, 1); // Usuwamy 1 element podnalezionym indeksem
+        }
+        const elementDoUsuwania = document.getElementById(fileName);
+        if (elementDoUsuwania) {
+            elementDoUsuwania.remove();
+        }
+        if (iloscobrazkow >= 7) {
+            afterblock.style.display = "block";
+        }
+    }
+    function EditImiage(fileName, NewFile) {
+
+        const index = wybranePliki.findIndex(plik => plik.name === fileName)
+        if (index !== -1) {
+            wybranePliki.splice(index, 1, newfile); // Usuwamy 1 element podnalezion
+        }
+        const elementDoUsuwania = document.getElementById(fileName);
+        if (elementDoUsuwania) {
+            elementDoUsuwania.remove();
+        }    
+
+    }
 
     const formularz = document.querySelector('form');
 
