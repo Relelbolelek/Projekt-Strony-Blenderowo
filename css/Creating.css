@@ -211,4 +211,17 @@ textarea:focus {
     -webkit-appearance: none;
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
+.KM {
+
+    position: relative;
+
+}
+.HB {
+
+    position: absolute;
+    bottom: -50%;
+    left: 20%;
+
+
+}
 

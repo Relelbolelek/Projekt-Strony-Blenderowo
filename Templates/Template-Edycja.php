@@ -166,7 +166,7 @@
             </div>
             <hr style="grid-area: hr;">
             <div id='Imiage-Conatiner' style="grid-area: box-2;">
-                <img class='Images' id="Template" src="templet.png" alt="">
+                <img class='Images' id="Template" src="<?php echo '../'.$row["image_ID"] ?>" alt="">
             </div>
             <section id='mini-container' style="grid-area: box-3;">
                 <label for="wyborPlikow" class="Imiage-add" id="adding_button">

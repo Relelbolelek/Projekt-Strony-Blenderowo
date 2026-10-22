@@ -67,8 +67,15 @@
                 <h3>
                     <?php echo "Ilość prac: ".$row['iloscprac'];?>
                 </h3>
-                
             </div>
+            <?php
+                    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION['id'] == $idprofilu) {
+                        echo 
+                        '
+                            <a id="EditButton" href="">Edytuj</a>
+                        ';
+                    }
+                ?>
         </section>
         <hr>
         <section>
@@ -80,30 +87,38 @@
                         $sql = "SELECT gallery.ID as Pid,User_ID,LEFT(NAME, 15) as Name,CONCAT(FORMAT(Price, 2), ' PLN') AS Price,image_ID,username FROM `gallery`,users WHERE gallery.User_ID = users.id";
                         $query = mysqli_query($link,$sql);
                     ?>
+                    <?php 
+                          if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION['id'] == $idprofilu) {
+                            echo 
+                            '
+                                <a href="../Creating.php" id="Add">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="125px" viewBox="0 -960 960 960" width="125px" fill="#aa71ec"><path d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+                                </a>
+                            ';
+                          }
+                    ?>
                     <?php while($row = mysqli_fetch_assoc($query)):?>
                         <div class="product_conteiner">
                             
                             <?php 
-                                if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-                                    if($_SESSION['id'] == $idprofilu){
-                                        echo'<div  class="option_conteiner">';
-                                    }
-                                    else {
-                                        echo'<div  class="option_conteiner" style="display:none;">';
-                                    }
+                                if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION['id'] == $idprofilu) {
+                                    echo
+                                        '
+                                            <div  class="option_conteiner">
+                                                <a href="../Skrypty/Produkt-Usun.php?id='.$idprofilu.'&idproduktu='.$row["Pid"].'"><svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#f84343"><path d="M600-240v-80h160v80H600Zm0-320v-80h280v80H600Zm0 160v-80h240v80H600ZM120-640H80v-80h160v-60h160v60h160v80h-40v360q0 33-23.5 56.5T440-200H200q-33 0-56.5-23.5T120-280v-360Zm80 0v360h240v-360H200Zm0 0v360-360Z"/></svg></a>
+                                                <a href="../Skrypty/edycja.php?id='.$row["Pid"].'"><svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#46a6ff"><path d="M160-400v-80h280v80H160Zm0-160v-80h440v80H160Zm0-160v-80h440v80H160Zm360 560v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q8 9 12.5 20t4.5 22q0 11-4 22.5T863-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z"/></svg></a>
+                                            </div>
+                                        ';
                                 }
                                 else {
-                                        echo'<div  class="option_conteiner" style="display:none;">';
                                 }
                             ?>
-                                <a href="../Skrypty/Produkt-Usun.php<?php echo '?id='.$idprofilu.'&idproduktu='.$row["Pid"]?>"><svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#f84343"><path d="M600-240v-80h160v80H600Zm0-320v-80h280v80H600Zm0 160v-80h240v80H600ZM120-640H80v-80h160v-60h160v60h160v80h-40v360q0 33-23.5 56.5T440-200H200q-33 0-56.5-23.5T120-280v-360Zm80 0v360h240v-360H200Zm0 0v360-360Z"/></svg></a>
-                                <a href="../Skrypty/edycja.php<?php echo '?id='.$row["Pid"]?>">""><svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#46a6ff"><path d="M160-400v-80h280v80H160Zm0-160v-80h440v80H160Zm0-160v-80h440v80H160Zm360 560v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q8 9 12.5 20t4.5 22q0 11-4 22.5T863-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z"/></svg></a>
-                            </div>
-                            <a style="grid-area: box-1;" href="Skrypty\produkt.php?id=<?php echo $row['Pid']; ?>"><img src="<?php echo "../".htmlspecialchars($row['image_ID']) ?>" alt="">
+                                
+                            <a style="grid-area: box-1;" href="..\Skrypty\produkt.php?id=<?php echo $row['Pid']; ?>"><img src="<?php echo "../".htmlspecialchars($row['image_ID']) ?>" alt="">
                             </a>
-                            <a class="a1" style="grid-area: box-2;" href="Skrypty\produkt.php?id=<?php echo $row['Pid']; ?>"> <?php
+                            <a class="a1" style="grid-area: box-2;" href="..\Skrypty\produkt.php?id=<?php echo $row['Pid']; ?>"> <?php
                                 echo htmlspecialchars($row['Name']);if(strlen($row['Name']) > 14){ echo '...';} ?></a>
-                            <a class="a2" style="grid-area: box-3;" href="Skrypty\produkt.php?id=<?php echo $row['Pid']; ?>"><?php echo htmlspecialchars($row['Price']) ?></a>
+                            <a class="a2" style="grid-area: box-3;" href="..\Skrypty\produkt.php?id=<?php echo $row['Pid']; ?>"><?php echo htmlspecialchars($row['Price']) ?></a>
                             
                         </div>
                      <?php endwhile?>
