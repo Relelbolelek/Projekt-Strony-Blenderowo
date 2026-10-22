@@ -184,6 +184,7 @@
     </footer>
 </div>
 <script>
+    const afterblock = document.getElementById('adding_button');
     let iloscobrazkow = 0;
     function SwtichImiage() {
         let src = event.target.src;
@@ -199,12 +200,15 @@
         if (elementDoUsuwania) {
             elementDoUsuwania.remove();
         }
+        if (iloscobrazkow >= 7) {
+            afterblock.style.display = "block";
+        }
     }
     function EditImiage(fileName, NewFile) {
 
         const index = wybranePliki.findIndex(plik => plik.name === fileName)
         if (index !== -1) {
-            wybranePliki.splice(index, 1, newfile); // Usuwamy 1 element podnalezionym indeksem
+            wybranePliki.splice(index, 1, newfile); // Usuwamy 1 element podnalezion
         }
         const elementDoUsuwania = document.getElementById(fileName);
         if (elementDoUsuwania) {
@@ -251,7 +255,6 @@
 
             wybranePliki.push(plik);
             
-            const afterblock = document.getElementById('adding_button');
             
             document.getElementById('Template').src = URL.createObjectURL(plik);
 
