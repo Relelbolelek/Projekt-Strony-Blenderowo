@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `gallery` (
   `ID` int(11) NOT NULL PRIMARY KEY,
-  `User_ID` int(11) NOT NULL REFERENCES users(id),
+  `User_ID` int(11) NOT NULL,
   `Name` text NOT NULL,
   `Discription` text DEFAULT NULL,
   `image_ID` text NOT NULL,
@@ -53,7 +53,7 @@ INSERT INTO `gallery` (`ID`, `User_ID`, `Name`, `Discription`, `image_ID`, `Pric
 
 CREATE TABLE `image_gallery` (
   `ID` int(11) NOT NULL PRIMARY KEY,
-  `Id_Pracy` int(11) NOT NULL REFERENCES gallery(id),
+  `Id_Pracy` int(11) NOT NULL ,
   `Imiage_name` text NOT NULL,
   `Thumbnail` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -74,8 +74,8 @@ INSERT INTO `image_gallery` (`ID`, `Id_Pracy`, `Imiage_name`, `Thumbnail`) VALUE
 
 CREATE TABLE `rating_gallery` (
   `ID` int(11) NOT NULL PRIMARY KEY,
-  `User_ID` int(11) NOT NULL REFERENCES users(id),
-  `ID_Pracy` int(11) NOT NULL REFERENCES Gallery(id),
+  `User_ID` int(11) NOT NULL ,
+  `ID_Pracy` int(11) NOT NULL ,
   `Comment` text NOT NULL,
   `Rating` tinyint(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
