@@ -184,11 +184,9 @@
     </footer>
 </div>
 <script>
+    const afterblock = document.getElementById('adding_button');
     let iloscobrazkow = 0;
-    function SwtichImiage(ImigeNumber) {
-        let src = event.target.src;
-        document.getElementById('Template').src = src;
-    }
+
 
     const inputPlikow = document.getElementById('wyborPlikow');
     const kontener = document.getElementById('Imiage-Conatiner');
@@ -199,6 +197,7 @@
     const dozwoloneTypy = ['image/jpeg', 'image/png', 'image/jpg'];
     const maksymalnyRozmiar = 4 * 1024 * 1024; 
 
+    
     inputPlikow.addEventListener('change', function(e) {
         const nowefile = Array.from(e.target.files);
 
@@ -228,21 +227,28 @@
 
             wybranePliki.push(plik);
             
-            const afterblock = document.getElementById('adding_button');
             
             document.getElementById('Template').src = URL.createObjectURL(plik);
 
             const kontenerMiniaturki = document.createElement('div');
             kontenerMiniaturki.style.height = "75px";
+            kontenerMiniaturki.onclick = () => SwtichImiage();
+            kontenerMiniaturki.id = plik.name;
+            kontenerMiniaturki.className='KM';
 
             const imgMini = document.createElement('img');
             imgMini.src = URL.createObjectURL(plik);
             imgMini.classList.add('Imiage-Miniature');
-            
-            let aktualnyIndeks = iloscobrazkow;
-            imgMini.onclick = () => SwtichImiage(aktualnyIndeks);
-            imgMini.id = "ImiageNumber" + iloscobrazkow;
 
+            const Dbutton = document.createElement('div')
+            Dbutton.className="HB";
+            Dbutton.onclick = () => RemoveImiage(plik.name) 
+            Dbutton.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#f84343"><path d="M600-240v-80h160v80H600Zm0-320v-80h280v80H600Zm0 160v-80h240v80H600ZM120-640H80v-80h160v-60h160v60h160v80h-40v360q0 33-23.5 56.5T440-200H200q-33 0-56.5-23.5T120-280v-360Zm80 0v360h240v-360H200Zm0 0v360-360Z"/></svg>
+            `;
+            
+
+            kontenerMiniaturki.appendChild(Dbutton);
             kontenerMiniaturki.appendChild(imgMini);
             afterblock.before(kontenerMiniaturki);
             
@@ -254,7 +260,38 @@
         }
         
         inputPlikow.value = '';
+        
     });
+        function SwtichImiage() {
+        let src = event.target.src;
+        document.getElementById('Template').src = src;
+    }
+    function RemoveImiage(fileName) {
+
+        const index = wybranePliki.findIndex(plik => plik.name === fileName)
+        if (index !== -1) {
+            wybranePliki.splice(index, 1); // Usuwamy 1 element podnalezionym indeksem
+        }
+        const elementDoUsuwania = document.getElementById(fileName);
+        if (elementDoUsuwania) {
+            elementDoUsuwania.remove();
+        }
+        if (iloscobrazkow >= 7) {
+            afterblock.style.display = "block";
+        }
+    }
+    function EditImiage(fileName, NewFile) {
+
+        const index = wybranePliki.findIndex(plik => plik.name === fileName)
+        if (index !== -1) {
+            wybranePliki.splice(index, 1, newfile); // Usuwamy 1 element podnalezion
+        }
+        const elementDoUsuwania = document.getElementById(fileName);
+        if (elementDoUsuwania) {
+            elementDoUsuwania.remove();
+        }    
+
+    }
 
     const formularz = document.querySelector('form');
 

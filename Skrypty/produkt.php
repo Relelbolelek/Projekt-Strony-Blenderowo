@@ -5,7 +5,7 @@ $idProduktu = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 // 2. Pobieramy dane produktu z bazy danych (symulacja)
 // $db -> tu połączenie z bazą
-$sql = "SELECT gallery.ID as GID,image_gallery.ID as igID,gallery.User_ID,gallery.Name,gallery.Discription,gallery.image_ID,CONCAT(FORMAT(gallery.Price, 2), ' PLN') AS Price,gallery.Website_ID,image_gallery.Id_Pracy,image_gallery.Imiage_name FROM gallery,image_gallery WHERE gallery.ID = image_gallery.Id_Pracy AND gallery.ID=$idProduktu GROUP BY image_gallery.ID";
+$sql = "SELECT gallery.ID as GID,image_gallery.ID as igID,gallery.User_ID,gallery.Name,gallery.Discription,gallery.image_ID,CONCAT(FORMAT(gallery.Price, 2), ' PLN') AS Price,gallery.Website_ID,image_gallery.Id_Pracy,image_gallery.Imiage_name, ROUND(AVG(rating_gallery.Rating)) as Ocena FROM gallery,image_gallery,rating_gallery WHERE gallery.ID = image_gallery.Id_Pracy AND gallery.ID=$idProduktu GROUP BY image_gallery.ID";
 $query = mysqli_query($link,$sql); 
 $row = mysqli_fetch_assoc($query);
 

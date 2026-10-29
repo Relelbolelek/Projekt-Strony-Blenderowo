@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Changa+One:ital@0;1&display=swap');
+
+* {
+
+    margin: 0;
+    padding: 0;
+    font-family: "Sigmar One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    box-sizing: border-box;
+}
+body {
+
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center;
+    height: 100vh;
+
+}
+#Login-Container {
+
+
+    background-color: rgba(13, 117, 236, 0.43);
+    border: 2px solid rgb(85, 84, 84,0.5);
+    padding: 5rem 3rem 5rem 3rem;
+    border-radius: 2rem;
+    text-align: center;
+
+}
+#Login-Container input {
+
+    padding: 1rem;
+    margin: 1rem 0 0 0;
+    background-color: rgb(161, 159, 159,0.4);
+    border-radius: 2rem;
+
+
+}
+button {
+
+    width: 100%;
+    margin: 2rem 0 0 0;
+    padding: 0.5rem;
+    background-color: rgba(146, 124, 245, 0.9);
+    border-radius: 2rem;
+    border: 2px solid rgba(103, 85, 187, 0.7);
+
+}
+button:hover {
+
+    background-color: rgb(120, 73, 230);
+    color: rgb(212, 212, 212);
+
+}
+a {
+
+    text-decoration: none;
+    color: rgb(211, 211, 211);
+    text-anchor: middle;
+    dominant-baseline: middle; 
+    margin:15px;
+
+}
+h1 {
+
+    color: rgb(241, 241, 241);
+
+}
+body {
+    background-image: url("../Background.jpg");
+    background-color: #cccccc;
+    background-size: cover;       /* Scales the image to cover the whole screen */
+    background-repeat: no-repeat; /* Prevents the image from tiling */
+    background-position: center;  /* Centers the image */
+    height: 100vh;                /* Ensures the body takes up the full screen height */
+    margin: 0;
+}

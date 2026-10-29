@@ -3,18 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/Register.css">
     <title>Rejestracja</title>
 </head>
 <body>
     <?php
         require_once "Skrypty\base.php";
     ?>
-    <form action="Register.php" method="post">
-        <input type="text" name="Name" id="">
-        <input type="password" name="Password" id="">
-        <input type="password" name="Password_Comfird" id="">
-        <button type="submit" name="button"></button>
-    </form>
+    <div id='Register-Container'>
+        <a href="galeria.php"> 
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#D3D3D3"><path d="M360-240 120-480l240-240 56 56-144 144h568v80H272l144 144-56 56Z"/></svg>
+            Wróć do galeri 
+        </a>
+        <h1>Rejestracja</h1>
+        <form action="Register.php" method="post">
+            <h3>Login:</h3>
+            <input type="text" name="Name" id=""><br>
+            <h3>Hasło:</h3>
+            <input type="password" name="Password" id=""><br>
+            <h3>Powtórz hasło:</h3>
+            <input type="password" name="Password_Comfird" id=""><br>
+            <button type="submit" name="button">Zarejestruj się</button>
+        </form>
+        <a href="Login.php">Masz już konto?</a>
+    </div>
     <?php
         session_start();
 
@@ -146,6 +158,5 @@
             }
         }
     ?>
-    <a href="Login.php">Masz już konto?</a>
 </body>
 </html>

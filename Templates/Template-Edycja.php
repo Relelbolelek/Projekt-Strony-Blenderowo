@@ -14,7 +14,7 @@
         if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
             echo '
                 <header>
-                    <a class="logo" href="galeria.php">Blenderowo</a>
+                    <a class="logo" href="../galeria.php">Blenderowo</a>
                     <a href="Logout.php">
                     Wyloguj się
                     <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#8b6966"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/></svg>
@@ -45,7 +45,7 @@
     <main>
         <?php
             require_once "base.php";
-            $sql = "SELECT gallery.ID as GID,image_gallery.ID as igID,gallery.User_ID,gallery.Name,gallery.Discription,gallery.image_ID,CONCAT(FORMAT(gallery.Price, 2), ' PLN') AS Price,gallery.Website_ID,image_gallery.Id_Pracy,image_gallery.Imiage_name FROM gallery,image_gallery WHERE gallery.ID = image_gallery.Id_Pracy AND gallery.ID=61 GROUP BY image_gallery.ID";
+            $sql = "SELECT gallery.ID as GID,image_gallery.ID as igID,gallery.User_ID,gallery.Name,gallery.Discription,gallery.image_ID,CONCAT(FORMAT(gallery.Price, 2), ' PLN') AS Price,gallery.Website_ID,image_gallery.Id_Pracy,image_gallery.Imiage_name FROM gallery,image_gallery WHERE gallery.ID = image_gallery.Id_Pracy AND gallery.ID=$idedycji GROUP BY image_gallery.ID";
             $query = mysqli_query($link,$sql); 
             $row = mysqli_fetch_assoc($query);
         ?>
@@ -159,13 +159,14 @@
         ?>
 
     <section>
+        <?php echo $row['Name'] ?>
         <form action="Creating.php" method="POST" enctype="multipart/form-data">
             <div style="grid-area: box-1;">
                     <input id="Header" type="text" name="Nazwa" value="<?php echo $row['Name'] ?>" placeholder="Podaj tytuł:" maxlength="30">
             </div>
             <hr style="grid-area: hr;">
             <div id='Imiage-Conatiner' style="grid-area: box-2;">
-                <img class='Images' id="Template" src="templet.png" alt="">
+                <img class='Images' id="Template" src="<?php echo '../'.$row["image_ID"] ?>" alt="">
             </div>
             <section id='mini-container' style="grid-area: box-3;">
                 <label for="wyborPlikow" class="Imiage-add" id="adding_button">

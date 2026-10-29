@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/Login.css">
     <title>Document</title>
 </head>
 <body>
@@ -96,11 +97,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 
 ?>
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-    <input type="text" name="Username" id="">
-    <input type="password" name="Password" id="">
-    <button type="submit"></button>
-</form>
-<a href="Register.php">Nie masz konta?</a>
+<div id="Login-Container">
+    <a href="galeria.php"> 
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#D3D3D3"><path d="M360-240 120-480l240-240 56 56-144 144h568v80H272l144 144-56 56Z"/></svg>
+        Wróć do galeri 
+    </a>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <h1>Logowanie</h1>    
+        <input type="text" name="Username" id=""><br>
+        <input type="password" name="Password" id=""><br>
+        <button type="submit">Zaloguj się</button>
+    </form>
+    <a href="Register.php">Nie masz konta?</a>
+</div>
 </body>
 </html>
