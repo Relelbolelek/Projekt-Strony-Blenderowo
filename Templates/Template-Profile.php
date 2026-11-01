@@ -84,7 +84,7 @@
                 <div id="galery-container">
                     <?php 
                         require_once "..\Skrypty\base.php";
-                        $sql = "SELECT gallery.ID as Pid,User_ID,LEFT(NAME, 15) as Name,CONCAT(FORMAT(Price, 2), ' PLN') AS Price,image_ID,username FROM `gallery`,users WHERE gallery.User_ID = users.id";
+                        $sql = "SELECT gallery.ID as Pid,User_ID,LEFT(NAME, 15) as Name,CONCAT(FORMAT(Price, 2), ' PLN') AS Price,image_ID,username FROM `gallery`,users WHERE gallery.User_ID = users.id AND gallery.User_ID = $idprofilu";
                         $query = mysqli_query($link,$sql);
                     ?>
                     <?php 

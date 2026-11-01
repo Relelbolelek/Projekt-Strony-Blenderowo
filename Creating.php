@@ -148,6 +148,7 @@
                     exit;
                 } else {
                     echo "Coś poszło nie tak (błąd walidacji)";
+                    
                 }
             }
         ?>
@@ -184,114 +185,172 @@
     </footer>
 </div>
 <script>
-    const afterblock = document.getElementById('adding_button');
-    let iloscobrazkow = 0;
+const afterblock = document.getElementById('adding_button');
+let iloscobrazkow = 0;
 
+const inputPlikow = document.getElementById('wyborPlikow');
+const kontener = document.getElementById('Imiage-Conatiner');
+const miniaturka = document.getElementById('mini-container');
 
-    const inputPlikow = document.getElementById('wyborPlikow');
-    const kontener = document.getElementById('Imiage-Conatiner');
-    const miniaturka = document.getElementById('mini-container');
+let wybranePliki = []; 
 
-    let wybranePliki = []; 
+const dozwoloneTypy = ['image/jpeg', 'image/png', 'image/jpg'];
+const maksymalnyRozmiar = 4 * 1024 * 1024; 
 
-    const dozwoloneTypy = ['image/jpeg', 'image/png', 'image/jpg'];
-    const maksymalnyRozmiar = 4 * 1024 * 1024; 
+inputPlikow.addEventListener('change', function(e) {
+    const nowefile = Array.from(e.target.files);
 
-    
-    inputPlikow.addEventListener('change', function(e) {
-        const nowefile = Array.from(e.target.files);
-
-        for (let plik of nowefile) {
-            if (wybranePliki.length >= 7) {
-                alert('Możesz dodać maksymalnie 7 obrazków!');
-                break;
-            }
-
-            const czyDuplikat = wybranePliki.some(
-                istniejacy => istniejacy.name === plik.name && istniejacy.size === plik.size
-            );
-            if (czyDuplikat) {
-                alert(`Plik "${plik.name}" został już dodany!`);
-                continue; 
-            }
-
-            if (!dozwoloneTypy.includes(plik.type)) {
-                alert(`Plik "${plik.name}" ma niedozwolony format.`);
-                continue; 
-            }
-
-            if (plik.size > maksymalnyRozmiar) {
-                alert(`Plik "${plik.name}" jest za duży!`);
-                continue; 
-            }
-
-            wybranePliki.push(plik);
-            
-            
-            document.getElementById('Template').src = URL.createObjectURL(plik);
-
-            const kontenerMiniaturki = document.createElement('div');
-            kontenerMiniaturki.style.height = "75px";
-            kontenerMiniaturki.onclick = () => SwtichImiage();
-            kontenerMiniaturki.id = plik.name;
-            kontenerMiniaturki.className='KM';
-
-            const imgMini = document.createElement('img');
-            imgMini.src = URL.createObjectURL(plik);
-            imgMini.classList.add('Imiage-Miniature');
-
-            const Dbutton = document.createElement('div')
-            Dbutton.className="HB";
-            Dbutton.onclick = () => RemoveImiage(plik.name) 
-            Dbutton.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#f84343"><path d="M600-240v-80h160v80H600Zm0-320v-80h280v80H600Zm0 160v-80h240v80H600ZM120-640H80v-80h160v-60h160v60h160v80h-40v360q0 33-23.5 56.5T440-200H200q-33 0-56.5-23.5T120-280v-360Zm80 0v360h240v-360H200Zm0 0v360-360Z"/></svg>
-            `;
-            
-
-            kontenerMiniaturki.appendChild(Dbutton);
-            kontenerMiniaturki.appendChild(imgMini);
-            afterblock.before(kontenerMiniaturki);
-            
-            iloscobrazkow++;
-            if (iloscobrazkow >= 7) {
-                afterblock.style.display = "none";
-                break;
-            }
+    for (let plik of nowefile) {
+        if (wybranePliki.length >= 7) {
+            alert('Możesz dodać maksymalnie 7 obrazków!');
+            break;
         }
+
+        const czyDuplikat = wybranePliki.some(
+            istniejacy => istniejacy.name === plik.name && istniejacy.size === plik.size
+        );
+        if (czyDuplikat) {
+            alert(`Plik "${plik.name}" został już dodany!`);
+            continue; 
+        }
+
+        if (!dozwoloneTypy.includes(plik.type)) {
+            alert(`Plik "${plik.name}" ma niedozwolony format.`);
+            continue; 
+        }
+
+        if (plik.size > maksymalnyRozmiar) {
+            alert(`Plik "${plik.name}" jest za duży!`);
+            continue; 
+        }
+
+        wybranePliki.push(plik);
         
-        inputPlikow.value = '';
-        
-    });
-        function SwtichImiage() {
-        let src = event.target.src;
-        document.getElementById('Template').src = src;
-    }
-    function RemoveImiage(fileName) {
+        // Ustawiamy pierwszy dodany plik jako główny szablon, jeśli to konieczne
+        document.getElementById('Template').src = URL.createObjectURL(plik);
 
-        const index = wybranePliki.findIndex(plik => plik.name === fileName)
-        if (index !== -1) {
-            wybranePliki.splice(index, 1); // Usuwamy 1 element podnalezionym indeksem
-        }
-        const elementDoUsuwania = document.getElementById(fileName);
-        if (elementDoUsuwania) {
-            elementDoUsuwania.remove();
-        }
+        stworzMiniaturke(plik);
+        
+        iloscobrazkow++;
         if (iloscobrazkow >= 7) {
-            afterblock.style.display = "block";
+            afterblock.style.display = "none";
+            break;
         }
     }
-    function EditImiage(fileName, NewFile) {
+    
+    inputPlikow.value = '';
+});
 
-        const index = wybranePliki.findIndex(plik => plik.name === fileName)
+// Pomocnicza funkcja do tworzenia elementu miniaturki, przydatna też przy edycji
+function stworzMiniaturke(plik) {
+    const kontenerMiniaturki = document.createElement('div');
+    kontenerMiniaturki.style.height = "75px";
+    kontenerMiniaturki.id = plik.name;
+    kontenerMiniaturki.className = 'KM';
+
+    // Kliknięcie w miniaturkę zmienia główny obrazek (używamy event.currentTarget dla pewności)
+    kontenerMiniaturki.onclick = (e) => {
+        // Zapobiegamy wywołaniu, jeśli kliknięto w przyciski usuwania/edycji
+        if(e.target.closest('.HB') || e.target.closest('.EB')) return;
+        document.getElementById('Template').src = URL.createObjectURL(plik);
+    };
+
+    const imgMini = document.createElement('img');
+    imgMini.src = URL.createObjectURL(plik);
+    imgMini.classList.add('Imiage-Miniature');
+
+    const Dbutton = document.createElement('div');
+    Dbutton.className = "HB";
+    Dbutton.onclick = () => RemoveImiage(plik.name);
+    Dbutton.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#f84343"><path d="M600-240v-80h160v80H600Zm0-320v-80h280v80H600Zm0 160v-80h240v80H600ZM120-640H80v-80h160v-60h160v60h160v80h-40v360q0 33-23.5 56.5T440-200H200q-33 0-56.5-23.5T120-280v-360Zm80 0v360h240v-360H200Zm0 0v360-360Z"/></svg>
+    `;
+
+    const Ebutton = document.createElement('div');
+    Ebutton.className = "EB";
+    Ebutton.onclick = () => EditImiage(plik.name);
+    Ebutton.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" height="25px" viewBox="0 -960 960 960" width="25px" fill="#212fff"><path d="M560-80v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q8 9 12.5 20t4.5 22q0 11-4 22.5T903-300L683-80H560Zm300-263-37-37 37 37ZM620-140h38l121-122-18-19-19-18-122 121v38ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v120h-80v-80H520v-200H240v640h240v80H240Zm280-400Zm241 199-19-18 37 37-18-19Z"/></svg>
+    `;
+
+    kontenerMiniaturki.appendChild(Dbutton);
+    kontenerMiniaturki.appendChild(Ebutton);
+    kontenerMiniaturki.appendChild(imgMini);
+    afterblock.before(kontenerMiniaturki);
+}
+
+function RemoveImiage(fileName) {
+    const index = wybranePliki.findIndex(plik => plik.name === fileName);
+    if (index !== -1) {
+        wybranePliki.splice(index, 1);
+        iloscobrazkow--;
+    }
+    const elementDoUsuwania = document.getElementById(fileName);
+    if (elementDoUsuwania) {
+        elementDoUsuwania.remove();
+        document.getElementById('Template').src = "templet.png"
+    }
+    if (iloscobrazkow < 7) {
+        afterblock.style.display = "block";
+    }
+}
+
+function EditImiage(oldFileName) {
+    // Tworzymy ukryty input typu file w locie
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = dozwoloneTypy.join(',');
+
+    fileInput.onchange = function(e) {
+        const nowyPlik = e.target.files[0];
+        if (!nowyPlik) return;
+
+        // Walidacja nowego pliku
+        if (!dozwoloneTypy.includes(nowyPlik.type)) {
+            alert(`Plik "${nowyPlik.name}" ma niedozwolony format.`);
+            return;
+        }
+
+        if (nowyPlik.size > maksymalnyRozmiar) {
+            alert(`Plik "${nowyPlik.name}" jest za duży!`);
+            return;
+        }
+
+        // Sprawdzamy czy taki plik już istnieje (pomijając ten, który edytujemy)
+        const czyDuplikat = wybranePliki.some(
+            (istniejacy, idx) => istniejacy.name === nowyPlik.name && istniejacy.size === nowyPlik.size && wybranePliki[idx].name !== oldFileName
+        );
+        if (czyDuplikat) {
+            alert(`Plik "${nowyPlik.name}" został już dodany!`);
+            return;
+        }
+
+        // Znajdujemy indeks starego pliku w tablicy
+        const index = wybranePliki.findIndex(plik => plik.name === oldFileName);
         if (index !== -1) {
-            wybranePliki.splice(index, 1, newfile); // Usuwamy 1 element podnalezion
+            wybranePliki[index] = nowyPlik; // Podmieniamy w tablicy
         }
-        const elementDoUsuwania = document.getElementById(fileName);
-        if (elementDoUsuwania) {
-            elementDoUsuwania.remove();
-        }    
 
-    }
+        // Znajdujemy stary element w DOM
+            const staryKontener = document.getElementById(oldFileName);
+        if (staryKontener) {
+            // Tworzymy tymczasowy kontener, żeby podmienić na bieżąco, albo usuwamy stary i generujemy nowy
+            staryKontener.remove();
+            
+            // Tworzymy miniaturkę dla nowego pliku
+            stworzMiniaturke(nowyPlik);
+        }
+
+        // Jeśli edytowany obrazek był aktualnie wyświetlony w podglądzie (Template), zaktualizuj go
+        const templateImg = document.getElementById('Template');
+        if (templateImg.src.includes(oldFileName) || true) { // Możesz dostosować warunek, jeśli chcesz
+            templateImg.src = URL.createObjectURL(nowyPlik);
+        }
+    };
+
+    // Symulujemy kliknięcie w wygenerowany input, co otwiera okno wyboru pliku
+    fileInput.click();
+}
 
     const formularz = document.querySelector('form');
 
