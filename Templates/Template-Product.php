@@ -98,6 +98,7 @@
                         
 
                     </div>
+                    <a id="OpinionButton" href="..\Templates\Template-Product-Opinione.php?idProduktu=<?php echo $idProduktu ?>">Dodaj opinię</a><hr>
                     <?php echo '<a href="..\Skrypty\Profile.php?id='.$row['User_ID'].'">Autor</a>' ?>
                 </section>
             </form>

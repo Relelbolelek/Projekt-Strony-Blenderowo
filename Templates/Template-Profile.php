@@ -113,6 +113,7 @@
                                 else {
                                 }
                             ?>
+                            <a href="">Dodaj opinię</a>
                                 
                             <a style="grid-area: box-1;" href="..\Skrypty\produkt.php?id=<?php echo $row['Pid']; ?>"><img src="<?php echo "../".htmlspecialchars($row['image_ID']) ?>" alt="">
                             </a>
