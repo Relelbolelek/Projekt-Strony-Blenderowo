@@ -82,27 +82,42 @@
     ?>
 
     <main id="main2">
+            <a href="..\Skrypty\produkt.php?id=<?php echo $idProduktu; ?>" style="text-anchor: middle; dominant-baseline: middle;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#272727"><path d="M7.83,13l5.6,5.6L12,20L4,12l8-8l1.43,1.4L7.83,11H20v2H7.83Z"/></svg>
+                    Powrót
+            </a>
         <section>
             <form action="..\Templates\Template-Product-Opinione.php?idProduktu=<?php echo $idProduktu ?>" method="POST" enctype="multipart/form-data" class="RatingContainer">
                 <section id="OpinionCreate">
                         <textarea style="grid-area: textarea" name="Opis" id="opinonTextArea" cols="60" rows="6"></textarea>
                     
                         <div class="rating">
-                                <input type="radio" name="rating" id="star-1" class="rating-star" value="1">
+                                <input type="radio" name="rating" id="star-1" class="rating-star" value="5">
                                 <label for="star-1"><i class="fa-normal fa-star"></i></label>
-                                <input type="radio" name="rating" id="star-2" class="rating-star" value="2">
+                                <input type="radio" name="rating" id="star-2" class="rating-star" value="4">
                                 <label for="star-2"><i class="fa-normal fa-star"></i></label>
                                 <input type="radio" name="rating" id="star-3" class="rating-star" value="3">
                                 <label for="star-3"><i class="fa-normal fa-star"></i></label>
-                                <input type="radio" name="rating" id="star-4" class="rating-star" value="4">
+                                <input type="radio" name="rating" id="star-4" class="rating-star" value="2">
                                 <label for="star-4"><i class="fa-normal fa-star"></i></label>
-                                <input type="radio" name="rating" id="star-5" class="rating-star" value="5">
+                                <input type="radio" name="rating" id="star-5" class="rating-star" value="1">
                                 <label for="star-5"><i class="fa-normal fa-star"></i></label>
                         </div>
-                        <button id="OpinoneSubmit" style="grid-area: submit">Opublikuj</button>
+                        <?php
+                            if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+                                echo '<button id="OpinoneSubmit" style="grid-area: submit">Opublikuj</button>';
+                            }
+                            else {
+                                echo '<h4><a href="../login.php" style="color:pink;">Chcesz dodać opinię? Zaloguj się!</a></h4>';
+                            }
+
+                        ?>
                 </section>
             </form>
         </section>
+        <div>
+
+         </div>
         <?php
                 $sql1 = "SELECT users.username,users.Avatar,rating_gallery.Comment,rating_gallery.Rating FROM rating_gallery, users WHERE rating_gallery.User_ID = users.id";
                 $query2 = mysqli_query($link,$sql1); 

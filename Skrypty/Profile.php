@@ -5,7 +5,7 @@ $idprofilu = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 // 2. Pobieramy dane produktu z bazy danych (symulacja)
 // $db -> tu połączenie z bazą
-$sql = 'SELECT users.id,users.created_at,users.username,COUNT(gallery.User_ID) as "iloscprac",gallery.ID as "PID" FROM `users`,gallery WHERE gallery.User_ID='.$idprofilu.' AND gallery.User_ID = users.id';
+$sql = 'SELECT users.id, users.created_at, users.username, COUNT(gallery.User_ID) AS "iloscprac"FROM users LEFT JOIN gallery ON users.id = gallery.User_ID WHERE users.id ='.$idprofilu.' GROUP BY users.id, users.created_at, users.username;';
 $query = mysqli_query($link,$sql); 
 $row = mysqli_fetch_assoc($query);
 

@@ -58,9 +58,9 @@
                 <img src="../templet.png" alt="">
             </div>
             <div>
-                <H1>
+                <h1>
                     <?php echo $row['username'] ?><br>
-                </H1>
+                </h1>
                 <h3>
                     <?php echo 'Użytkownik od: '.$formattedDate?>
                 </h3>
