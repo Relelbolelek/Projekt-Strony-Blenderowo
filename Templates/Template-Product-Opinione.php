@@ -119,7 +119,7 @@
 
          </div>
         <?php
-                $sql1 = "SELECT users.username,users.Avatar,rating_gallery.Comment,rating_gallery.Rating FROM rating_gallery, users WHERE rating_gallery.User_ID = users.id";
+                $sql1 = "SELECT users.username,users.Avatar,rating_gallery.Comment,rating_gallery.Rating FROM rating_gallery, users, gallery WHERE rating_gallery.User_ID = users.id AND rating_gallery.ID_Pracy = gallery.ID AND gallery.id = $idProduktu;";
                 $query2 = mysqli_query($link,$sql1); 
                 $row3 = mysqli_fetch_assoc($query);
             ?>
