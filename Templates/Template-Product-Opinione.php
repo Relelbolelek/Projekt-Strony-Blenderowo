@@ -19,7 +19,7 @@
                 else {
                     $rating = 0;
                 }
-                $sql ="INSERT INTO `rating_gallery` (`ID`, `User_ID`, `ID_Pracy`, `Comment`, `Rating`) VALUES ('', ?,?,?,?)";
+                $sql ="INSERT INTO `rating_gallery` (`User_ID`, `ID_Pracy`, `Comment`, `Rating`) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE `Comment` = VALUES(`Comment`), `Rating` = VALUES(`Rating`)";
 
                 if($stmt = mysqli_prepare($link,$sql)){
 
@@ -119,7 +119,7 @@
 
          </div>
         <?php
-                $sql1 = "SELECT users.username,users.Avatar,rating_gallery.Comment,rating_gallery.Rating FROM rating_gallery, users, gallery WHERE rating_gallery.User_ID = users.id AND rating_gallery.ID_Pracy = gallery.ID AND gallery.id = $idProduktu;";
+                $sql1 = "SELECT users.id,users.username,users.Avatar,rating_gallery.Comment,rating_gallery.Rating FROM rating_gallery, users, gallery WHERE rating_gallery.User_ID = users.id AND rating_gallery.ID_Pracy = gallery.ID AND gallery.id = $idProduktu;";
                 $query2 = mysqli_query($link,$sql1); 
                 $row3 = mysqli_fetch_assoc($query);
             ?>
@@ -139,6 +139,11 @@
                                }
                             ?>
                         </div>
+                        <?php
+                            if(isset($_SESSION['id']) && $_SESSION['id'] == $row3['id']) {
+                                echo '<a href="../skrypty/Product-Opinion-Delate.php?idProduktu='.$idProduktu.'">Usun</a>';
+                            }
+                        ?>
                         
                     </div>
                 <hr>
